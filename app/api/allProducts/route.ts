@@ -7,10 +7,6 @@ export async function GET() {
   const url = `${API_URL}/store/products?limit=${Lim}`;
 
   const res = await fetch(url, {
-    next: {
-      revalidate: 3600
-      ,
-    },
     method: "GET",
     headers: {
       Authorization: `Bearer ${API_KEY}`,
