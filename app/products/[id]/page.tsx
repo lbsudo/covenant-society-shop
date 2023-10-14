@@ -27,7 +27,6 @@ export default async function ProdPage({ params }: pageProps) {
 
   return (
     <>
-      test
       <ProductPage product={product} />
     </>
   )
