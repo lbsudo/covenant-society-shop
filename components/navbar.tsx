@@ -21,9 +21,7 @@ import clsx from "clsx";
 import { ThemeSwitch } from "@/components/theme-switch";
 import {
   TwitterIcon,
-  GithubIcon,
   DiscordIcon,
-  HeartFilledIcon,
   SearchIcon,
 } from "@/components/icons";
 
@@ -89,7 +87,6 @@ export const Navbar = () => {
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
         <Link isExternal href={siteConfig.links.github} aria-label="Github">
-          <GithubIcon className="text-default-500" />
         </Link>
         <ThemeSwitch />
         <NavbarMenuToggle />
