@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist/es/constants';
 import shoppingReducer from './shoppingSlice';
@@ -43,7 +43,7 @@ export const store = configureStore({
   }),
 });
 
-export let persitor = persistStore(store);
+export let persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 

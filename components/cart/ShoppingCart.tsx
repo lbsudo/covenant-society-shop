@@ -38,9 +38,9 @@ export default function ShoppingCart() {
   }, [productData])
 
 
-  const stripePromise = loadStripe(`${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`)
   const { data: session } = useSession();
   const handleCheckout = async () => {
+    const stripePromise = loadStripe(`${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`)
     const stripe = await stripePromise;
     const response = await fetch("/api/checkout", {
       method: "POST",

@@ -15,12 +15,12 @@ export interface ProvidersProps {
 
 export function Providers({ children, themeProps }: ProvidersProps) {
   return (
-    <Provider store={store}>
-      <AuthProvider>
+    <AuthProvider>
+      <Provider store={store}>
         <NextUIProvider>
           <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
         </NextUIProvider>
-      </AuthProvider>
-    </Provider>
+      </Provider>
+    </AuthProvider>
   );
 }
