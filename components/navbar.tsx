@@ -28,7 +28,6 @@ import { getServerSession } from "next-auth";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 
 export const Navbar = () => {
-  const session = getServerSession(options)
   const searchInput = (
     <Input
       aria-label="Search"
