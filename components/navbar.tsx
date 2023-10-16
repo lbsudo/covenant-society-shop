@@ -28,6 +28,7 @@ import { getServerSession } from "next-auth";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 
 export const Navbar = () => {
+  const session = getServerSession(options)
   const searchInput = (
     <Input
       aria-label="Search"
@@ -83,7 +84,7 @@ export const Navbar = () => {
           <ThemeSwitch />
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
-        <NavAvatar />
+        <NavAvatar session={session} />
       </NavbarContent>
 
       {/* Mobile Menu  */}
