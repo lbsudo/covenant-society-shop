@@ -1,9 +1,9 @@
 'use client'
-// import { addToCart } from '@/redux/shoppingSlice';
+import { addToCart } from '@/redux/shoppingSlice';
 import { SyncVariant, SyncProduct } from '../../types/Product';
 import Image from 'next/image';
 import { useState } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import toast, { Toaster } from 'react-hot-toast';
 
 export default function ProductPage({ product }: any) {
@@ -15,7 +15,7 @@ export default function ProductPage({ product }: any) {
     setSelectedVariant(variant);
     setQuantity(1);
   };
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const item = {
     id: product.sync_product.id,
     external_id: product.sync_product.external_id,
@@ -39,6 +39,7 @@ export default function ProductPage({ product }: any) {
             width={2000}
             height={2000}
             className=" object-cover"
+            priority
           />
         </div>
         <div className='w-1/2'>
@@ -76,7 +77,7 @@ export default function ProductPage({ product }: any) {
           <div className="mt-8">
             <button
               onClick={() =>
-                // dispatch(addToCart(item)) &&
+                dispatch(addToCart(item)) &&
                 toast.success(`Product added successfully`)}
             >
               Add To Cart

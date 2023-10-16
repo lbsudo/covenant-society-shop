@@ -26,6 +26,7 @@ import { Logo } from "@/components/icons";
 import NavAvatar from "./user/NavAvatar";
 import { getServerSession } from "next-auth";
 import { options } from "@/app/api/auth/[...nextauth]/options";
+import ShoppingCart from "./cart/ShoppingCart";
 
 export const Navbar = () => {
   const searchInput = (
@@ -83,6 +84,7 @@ export const Navbar = () => {
           <ThemeSwitch />
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
+        <ShoppingCart />
         <NavAvatar />
       </NavbarContent>
 

@@ -1,4 +1,5 @@
-import {nextui} from '@nextui-org/theme'
+import { nextui } from '@nextui-org/theme'
+const tailwindScrollbar = require('tailwind-scrollbar');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -12,5 +13,5 @@ module.exports = {
     extend: {},
   },
   darkMode: "class",
-  plugins: [nextui()],
+  plugins: [nextui(), tailwindScrollbar],
 }
