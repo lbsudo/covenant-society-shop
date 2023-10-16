@@ -12,7 +12,7 @@ import { redirect } from 'next/navigation';
 
 export default function NavAvatar() {
   const { data: session } = useSession({
-    required: true,
+    required: false,
     // onUnauthenticated() {
     //   redirect('/api/auth/signin?callbackUrl=/client')
     // }
