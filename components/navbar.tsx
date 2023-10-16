@@ -7,7 +7,6 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from "@nextui-org/navbar";
-import { Button } from "@nextui-org/button";
 import { Kbd } from "@nextui-org/kbd";
 import { Link } from "@nextui-org/link";
 import { Input } from "@nextui-org/input";
@@ -20,14 +19,16 @@ import clsx from "clsx";
 
 import { ThemeSwitch } from "@/components/theme-switch";
 import {
-  TwitterIcon,
-  DiscordIcon,
   SearchIcon,
 } from "@/components/icons";
 
 import { Logo } from "@/components/icons";
+import NavAvatar from "./user/NavAvatar";
+import { getServerSession } from "next-auth";
+import { options } from "@/app/api/auth/[...nextauth]/options";
 
 export const Navbar = () => {
+  const session = getServerSession(options)
   const searchInput = (
     <Input
       aria-label="Search"
@@ -83,8 +84,10 @@ export const Navbar = () => {
           <ThemeSwitch />
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
+        <NavAvatar session={session} />
       </NavbarContent>
 
+      {/* Mobile Menu  */}
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
         <Link isExternal href={siteConfig.links.github} aria-label="Github">
         </Link>
