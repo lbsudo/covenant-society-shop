@@ -1,9 +1,12 @@
 import { Product } from "@/types/Product";
 import { NextResponse, NextRequest } from "next/server";
 import Stripe from "stripe";
-// import { handleStripeWebhook } from "@/webhooks/printful";
+
+
 
 export const POST = async (request: NextRequest) => {
+  const NEXT_PUBLIC_PRINTFUL_API_KEY = process.env.PRINTFUL_API_KEY!;
+  const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET!;
   try {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
       apiVersion: "2023-08-16",
@@ -46,13 +49,49 @@ export const POST = async (request: NextRequest) => {
       },
     });
 
-    // Call the webhook function
-    // await fetch("https://your-webhook-endpoint", {
+    const recipientAddress = session.shipping_details;
+    const recipientEmail = session.customer_email;
+
+    // Make an order to the Printful API
+    // const printfulResponse = await fetch("https://api.printful.com/orders", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: `Bearer ${process.env.PRINTFUL_API_KEY}`,
+    //   },
+    //   body: JSON.stringify({
+    //     external_id: session.id,
+    //     recipient: {
+    //       name: recipientAddress?.name,
+    //       address1: recipientAddress?.address?.line1,
+    //       city: recipientAddress?.address?.city,
+    //       state_name: recipientAddress?.address?.state,
+    //       country_name: recipientAddress?.address?.country,
+    //       zip: recipientAddress?.address?.postal_code,
+    //       phone: recipientAddress?.phone,
+    //       email: recipientEmail,
+    //     },
+    //     items: items.map((item: Product) => ({
+    //       variant_id: item.sync_variant.variant_id,
+    //       quantity: item.quantity,
+    //       product_template_id: item.sync_variant.sync_product_id,
+    //     })),
+    //   }),
+    // });
+
+    // // Create a Stripe webhook event
+    // await fetch(process.env.STRIPE_WEBHOOK_URL!, {
     //   method: "POST",
     //   headers: {
     //     "Content-Type": "application/json",
     //   },
-    //   body: JSON.stringify(session),
+    //   body: JSON.stringify({
+    //     type: "order.completed",
+    //     data: {
+    //       orderId: printfulResponse.json(),
+    //       sessionId: session.id,
+    //     },
+    //   }),
     // });
 
     return NextResponse.json({
