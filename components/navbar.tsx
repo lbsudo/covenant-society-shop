@@ -84,7 +84,7 @@ export const Navbar = () => {
           <ThemeSwitch />
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
-        <NavAvatar session={session} />
+        <NavAvatar />
       </NavbarContent>
 
       {/* Mobile Menu  */}

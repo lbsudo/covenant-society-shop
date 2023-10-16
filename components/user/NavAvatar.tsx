@@ -5,10 +5,18 @@ import {
   NavbarItem,
 } from "@nextui-org/navbar";
 import NextLink from "next/link";
+import { useSession } from 'next-auth/react';
+import { redirect } from 'next/navigation';
 
 
 
-export default function NavAvatar({ session }: any) {
+export default function NavAvatar() {
+  const { data: session } = useSession({
+    required: true,
+    onUnauthenticated() {
+      redirect('/api/auth/signin?callbackUrl=/client')
+    }
+  })
   return (
     <>
       <NavbarItem>
