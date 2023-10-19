@@ -5,8 +5,6 @@ import Stripe from "stripe";
 
 
 export const POST = async (request: NextRequest) => {
-  const NEXT_PUBLIC_PRINTFUL_API_KEY = process.env.PRINTFUL_API_KEY!;
-  const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET!;
   try {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
       apiVersion: "2023-08-16",
@@ -42,7 +40,7 @@ export const POST = async (request: NextRequest) => {
         }
       ],
       billing_address_collection: "required",
-      success_url: `${process.env.NEXTAUTH_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${process.env.NEXTAUTH_URL}/success`,
       cancel_url: `${process.env.NEXTAUTH_URL}/`,
       metadata: {
         email,

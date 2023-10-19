@@ -3,7 +3,7 @@ const SuccessPage = () => {
 
   return (
     <>
-      <div>
+      <div className='flex justify-center items-center'>
         <h2>Your Payment Was Successful!</h2>
       </div>
     </>
