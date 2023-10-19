@@ -14,21 +14,14 @@ export const POST = async (request: NextRequest) => {
     if (type === "payment_intent.succeeded") {
       const paymentIntent = data.object;
 
+      const paymentIntentData = await stripe.paymentIntents.retrieve(paymentIntent);
+
+      const lineItems = paymentIntent.charges.data[0].payment_method_details.billing_details.line1;
+
+
       // Perform necessary actions when payment intent is succeeded
       // For example, update your database, send a confirmation email, or fulfill the order
       console.log("Payment intent succeeded:", paymentIntent);
-
-      const recipientAddress = paymentIntent.charges.data[0].billing_details.address;
-
-      // Extract the line items from the payment intent
-      const lineItems = paymentIntent.charges.data[0].billing_details.line_items;
-
-      // Map the line items to the format expected by the Printful API
-      const items = lineItems.map((item: Product) => ({
-        quantity: item.quantity,
-        variant_id: item.sync_variant.variant_id,
-        external_variant_id: item.sync_variant.external_id,
-      }));
 
       // Make a request to the Printful API to create an order
       const response = await fetch("https://api.printful.com/orders", {
@@ -38,18 +31,21 @@ export const POST = async (request: NextRequest) => {
           Authorization: "Bearer YOUR_PRINTFUL_API_KEY",
         },
         body: JSON.stringify({
-          external_id: lineItems.external_id,
           recipient: {
-            name: recipientAddress?.name,
-            address1: recipientAddress?.address?.line1,
-            city: recipientAddress?.address?.city,
-            state_name: recipientAddress?.address?.state,
-            country_name: recipientAddress?.address?.country,
-            zip: recipientAddress?.address?.postal_code,
-            phone: recipientAddress?.phone,
-            email: recipientAddress?.email,
+            name: paymentIntentData.shipping?.name,
+            address1: paymentIntentData.shipping?.address?.line1,
+            city: paymentIntentData.shipping?.address?.city,
+            state_name: paymentIntentData.shipping?.address?.state,
+            country_name: paymentIntentData.shipping?.address?.country,
+            zip: paymentIntentData.shipping?.address?.postal_code,
+            email: paymentIntentData.receipt_email,
           },
-          items: items
+          items: lineItems.map((item: Product) => ({
+            quanity: item.quantity,
+            variant_id: item.sync_variant.variant_id,
+            external_variant_id: item.sync_variant.external_id,
+          }))
+
         }),
       });
 
