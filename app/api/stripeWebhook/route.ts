@@ -3,12 +3,6 @@ import Stripe from "stripe";
 import { buffer } from 'micro'
 
 
-// export const config = {
-//   api: {
-//     bodyParser: false,
-//   }
-// }
-
 export const POST = async (req: any, res: any) => {
 
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
