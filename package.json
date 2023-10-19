@@ -33,6 +33,7 @@
     "eslint-config-next": "13.4.19",
     "framer-motion": "^10.16.2",
     "intl-messageformat": "^10.5.0",
+    "micro": "^10.0.1",
     "next": "13.4.19",
     "next-auth": "^4.23.2",
     "next-themes": "^0.2.1",
