@@ -2,8 +2,6 @@ import { Product } from "@/types/Product";
 import { NextResponse, NextRequest } from "next/server";
 import Stripe from "stripe";
 
-
-
 export const POST = async (request: NextRequest) => {
   try {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
