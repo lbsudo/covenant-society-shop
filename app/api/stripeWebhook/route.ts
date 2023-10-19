@@ -34,7 +34,7 @@ export const POST = async (req: NextRequest, res: any) => {
     console.log(paymentIntent);
   }
 
-  res.status(200).send();
+  res.status(200).send('Webhook received and processed successfully');
 
 };
 
