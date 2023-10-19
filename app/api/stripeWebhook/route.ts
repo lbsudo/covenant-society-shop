@@ -10,7 +10,7 @@ export const POST = async (req: any, res: any) => {
 
   const buf = await buffer(req);
   const sig = req.headers.get('stripe-signature');
-  const webhookSecret = process.env.STRIPE_WEBHOOK_SIGNING_SECRET;
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
   let event;
 
