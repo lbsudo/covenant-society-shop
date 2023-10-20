@@ -21,6 +21,13 @@ export const POST = async (request: NextRequest) => {
           name: item.name,
           description: item.variant,
           images: [item.thumbnail],
+          metadata: {
+            // Include additional product data here
+            product_template_id: String(item.sync_variant.sync_product_id),
+            variant_id: String(item.sync_variant.variant_id),
+            quanity: item.quantity,
+
+          },
         },
       },
     }));
