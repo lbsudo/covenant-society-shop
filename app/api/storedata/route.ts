@@ -38,10 +38,6 @@ export async function GET() {
   const storeInfo = await storeRes.json();
 
   const productRes = await fetch(productUrl, {
-    next: {
-      revalidate: 5
-      ,
-    },
     method: "GET",
     headers: {
       Authorization: `Bearer ${API_KEY}`,

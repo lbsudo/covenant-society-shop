@@ -1,3 +1,4 @@
+import { Product } from "@/types/Product";
 import { NextResponse, NextRequest } from "next/server";
 import Stripe from "stripe";
 
@@ -19,13 +20,10 @@ export const POST = async (request: NextRequest) => {
       // Get the recipient's address from the session
       const recipientAddress = session.shipping_details?.address;
 
-      // Access the line items and their metadata
-      const lineItems = session.line_items?.data ?? [];
-      const items = lineItems.map((item: any) => ({
-        product_template_id: item.metadata.product_template_id,
-        variant_id: item.metadata.variant_id,
-        quantity: item.metadata.quantity,
-      }));
+      // Get the productData from the session metadata if it exists
+      const productData = session.metadata?.productData ? JSON.parse(session.metadata.productData) : [];
+
+      // Use the productData in your webhook logic
 
       // Construct the data for the Printful order
       const printfulOrderData = {
@@ -39,7 +37,11 @@ export const POST = async (request: NextRequest) => {
           state_name: recipientAddress?.state,
           zip: recipientAddress?.postal_code
         },
-        items: items,
+        items: productData.map((item: Product) => ({
+          quantity: item.quantity,
+          variant_id: item.sync_variant.variant_id,
+          external_variant_id: item.sync_variant.external_id,
+        })),
       };
 
       // Make a POST request to the Printful API
