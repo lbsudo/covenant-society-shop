@@ -21,7 +21,7 @@ export const POST = async (request: NextRequest) => {
       const recipientAddress = session.shipping_details?.address;
 
       // Get the productData from the session metadata if it exists
-      const productData = session.metadata?.productData ? JSON.parse(session.metadata.productData) : [];
+      const productData = session.metadata?.productData;
 
       // Use the productData in your webhook logic
 
