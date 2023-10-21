@@ -42,7 +42,7 @@ export const POST = async (request: NextRequest) => {
       cancel_url: `${process.env.NEXTAUTH_URL}/`,
       metadata: {
         email,
-        productData: JSON.stringify(extractingItems),
+        orderData: JSON.stringify(extractingItems),
       },
     });
 
