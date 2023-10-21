@@ -11,11 +11,11 @@ export const POST = async (request: NextRequest) => {
     const reqBody = await request.json();
     const { type, data } = reqBody;
 
-    if (type === "payment_intent.succeeded") {
-      const paymentIntent = data.object;
+    if (type === "checkout.session.completed") {
+      const session = data.object;
 
       // Retrieve the Stripe session
-      const session = await stripe.checkout.sessions.retrieve(paymentIntent.checkout_session_id);
+      // const session = await stripe.checkout.sessions.retrieve(paymentIntent.checkout_session_id);
 
       // Get the recipient's address from the session
       const recipientAddress = session.shipping_details?.address;
