@@ -65,7 +65,7 @@ export const POST = async (request: NextRequest) => {
 
       // Perform necessary actions when payment intent is succeeded
       // For example, update your database, send a confirmation email, or fulfill the order
-      console.log("Payment intent succeeded:", paymentIntent);
+      console.log("Checkout Session Completed:");
     }
 
     return NextResponse.json({ message: "Webhook received successfully" });
