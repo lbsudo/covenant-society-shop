@@ -9,7 +9,7 @@ export const POST = async (request: NextRequest) => {
     });
 
     const reqBody = await request.json();
-    const { type, data } = reqBody;
+    const { type, data, items } = reqBody;
 
     if (type === "checkout.session.completed") {
       const session = data.object;
@@ -21,7 +21,7 @@ export const POST = async (request: NextRequest) => {
       const recipientAddress = session.shipping_details?.address;
 
       // Get the productData from the session metadata if it exists
-      const productData = session.metadata?.productData ? JSON.parse(session.metadata.productData) : [];
+      // const productData = session.metadata?.productData ? JSON.parse(session.metadata.productData) : [];
 
       // Use the productData in your webhook logic
 
@@ -37,7 +37,7 @@ export const POST = async (request: NextRequest) => {
           state_name: recipientAddress?.state,
           zip: recipientAddress?.postal_code
         },
-        items: productData.map((item: Product) => ({
+        items: items.map((item: Product) => ({
           quantity: item.quantity,
           variant_id: item.sync_variant.variant_id,
           external_variant_id: item.sync_variant.external_id,

@@ -19,6 +19,7 @@ export default function ProductPage({ product }: any) {
   const item = {
     id: product.sync_product.id,
     external_id: product.sync_product.external_id,
+    external_product_id: selectedVariant.external_id,
     variant_id: selectedVariant.variant_id,
     name: product.sync_product.name,
     price: selectedVariant.retail_price,
