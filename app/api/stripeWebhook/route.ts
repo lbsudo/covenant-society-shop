@@ -37,11 +37,11 @@ export const POST = async (request: NextRequest) => {
           state_name: recipientAddress?.state,
           zip: recipientAddress?.postal_code
         },
-        items: items.map((item: Product) => ({
+        items: items ? items.map((item: Product) => ({
           quantity: item.quantity,
           variant_id: item.sync_variant.variant_id,
           external_variant_id: item.sync_variant.external_id,
-        })),
+        })) : [],
       };
 
       // Make a POST request to the Printful API
