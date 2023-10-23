@@ -5,25 +5,41 @@ export const siteConfig = {
   description: "Make beautiful websites regardless of your design experience.",
   navItems: [
     {
-      label: "Home",
-      href: "/",
+      label: "New Arrivals",
+      href: "/mens-new-arrivals",
     },
     {
-      label: "Docs",
-      href: "/docs",
+      label: "All",
+      href: "/mens-all",
     },
     {
-      label: "Pricing",
-      href: "/pricing",
+      label: "T-Shirts",
+      href: "/mens-t-shirts",
     },
     {
-      label: "Blog",
-      href: "/blog",
+      label: "Sweatshirts",
+      href: "/mens-sweatshirts",
     },
     {
-      label: "About",
-      href: "/about",
-    }
+      label: "Outerwear",
+      href: "/mens-outerwear",
+    },
+    {
+      label: "Bottoms",
+      href: "/mens-bottoms",
+    },
+    {
+      label: "Headwear",
+      href: "/mens-headwear",
+    },
+    {
+      label: "Accessories",
+      href: "/mens-accessories",
+    },
+    {
+      label: "Footwear",
+      href: "/mens-footwear",
+    },
   ],
   navMenuItems: [
     {
