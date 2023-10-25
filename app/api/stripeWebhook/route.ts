@@ -9,16 +9,31 @@ export const POST = async (request: NextRequest) => {
     });
 
     const reqBody = await request.json();
-    const { type, data, items } = reqBody;
+    const { type, data } = reqBody;
 
     if (type === "checkout.session.completed") {
-      const session = data.object;
+      const sessionId = data.object.id;
+
+      fetch(`${process.env.NEXTAUTH_URL}/api/printful-order`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ sessionId }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
 
       // Retrieve the Stripe session
       // const session = await stripe.checkout.sessions.retrieve(paymentIntent.checkout_session_id);
 
       // Get the recipient's address from the session
-      const recipientAddress = session.shipping_details?.address;
+      // const recipientAddress = session.shipping_details?.address;
 
       // Get the productData from the session metadata if it exists
       // const productData = session.metadata?.productData ? JSON.parse(session.metadata.productData) : [];
@@ -26,42 +41,42 @@ export const POST = async (request: NextRequest) => {
       // Use the productData in your webhook logic
 
       // Construct the data for the Printful order
-      const printfulOrderData = {
-        recipient: {
-          name: session.shipping_details?.name,
-          phone: session.shipping_details?.phone,
-          email: session.customer_email,
-          address1: recipientAddress?.line1,
-          city: recipientAddress?.city,
-          country_name: recipientAddress?.country,
-          state_name: recipientAddress?.state,
-          zip: recipientAddress?.postal_code
-        },
-        items: items ? items.map((item: Product) => ({
-          quantity: item.quantity,
-          variant_id: item.sync_variant.variant_id,
-          external_variant_id: item.sync_variant.external_id,
-        })) : [],
-      };
+      // const printfulOrderData = {
+      //   recipient: {
+      //     name: session.shipping_details?.name,
+      //     phone: session.shipping_details?.phone,
+      //     email: session.customer_email,
+      //     address1: recipientAddress?.line1,
+      //     city: recipientAddress?.city,
+      //     country_name: recipientAddress?.country,
+      //     state_name: recipientAddress?.state,
+      //     zip: recipientAddress?.postal_code
+      //   },
+      //   items: items ? items.map((item: Product) => ({
+      //     quantity: item.quantity,
+      //     variant_id: item.sync_variant.variant_id,
+      //     external_variant_id: item.sync_variant.external_id,
+      //   })) : [],
+      // };
 
       // Make a POST request to the Printful API
-      fetch('https://api.printful.com/orders', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.PRINTFUL_API_KEY}`
-        },
-        body: JSON.stringify(printfulOrderData)
-      })
-        .then(response => response.json())
-        .then(data => {
-          // Handle the response from the Printful API
-          console.log(data);
-        })
-        .catch(error => {
-          // Handle any errors from the Printful API
-          console.log(error);
-        });
+      // fetch('https://api.printful.com/orders', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'Authorization': `Bearer ${process.env.PRINTFUL_API_KEY}`
+      //   },
+      //   body: JSON.stringify(printfulOrderData)
+      // })
+      //   .then(response => response.json())
+      //   .then(data => {
+      //     // Handle the response from the Printful API
+      //     console.log(data);
+      //   })
+      //   .catch(error => {
+      //     // Handle any errors from the Printful API
+      //     console.log(error);
+      //   });
 
       // Perform necessary actions when payment intent is succeeded
       // For example, update your database, send a confirmation email, or fulfill the order

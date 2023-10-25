@@ -3,42 +3,89 @@ export type SiteConfig = typeof siteConfig;
 export const siteConfig = {
   name: "Next.js + NextUI",
   description: "Make beautiful websites regardless of your design experience.",
-  navItems: [
+  mensItems: [
     {
       label: "New Arrivals",
-      href: "/mens-new-arrivals",
+      href: "/category/mens-new-arrivals",
     },
     {
       label: "All",
-      href: "/mens-all",
+      href: "/category/mens-all",
     },
     {
       label: "T-Shirts",
-      href: "/mens-t-shirts",
+      href: "/category/mens-t-shirts",
     },
     {
       label: "Sweatshirts",
-      href: "/mens-sweatshirts",
+      href: "/category/mens-sweatshirts",
     },
     {
       label: "Outerwear",
-      href: "/mens-outerwear",
+      href: "/category/mens-outerwear",
     },
     {
       label: "Bottoms",
-      href: "/mens-bottoms",
+      href: "/category/mens-bottoms",
     },
     {
       label: "Headwear",
-      href: "/mens-headwear",
+      href: "/category/mens-headwear",
     },
     {
       label: "Accessories",
-      href: "/mens-accessories",
+      href: "/category/mens-accessories",
     },
     {
       label: "Footwear",
-      href: "/mens-footwear",
+      href: "/category/mens-footwear",
+    },
+  ],
+  womensItems: [
+    {
+      label: "New Arrivals",
+      href: "/category/womens-new-arrivals",
+    },
+    {
+      label: "All",
+      href: "/category/womens-all",
+    },
+    {
+      label: "Tops",
+      href: "/category/womens-tops",
+    },
+    {
+      label: "Sweatshirts",
+      href: "/category/womens-sweatshirts",
+    },
+    {
+      label: "Bottoms",
+      href: "/category/womens-bottoms",
+    },
+    {
+      label: "Accessories",
+      href: "/category/womens-accessories",
+    },
+  ],
+  collectionItems: [
+    {
+      label: "Classic",
+      href: "/category/classic",
+    },
+    {
+      label: "Collegiate",
+      href: "/category/Collegiate",
+    },
+    {
+      label: "OG",
+      href: "/category/OG",
+    },
+
+  ],
+  collabItems: [
+    {
+      label: "Coming Soon",
+      href: "/category/coming-soon",
     },
   ],
   navMenuItems: [

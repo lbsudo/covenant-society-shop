@@ -29,7 +29,6 @@ import NavAvatar from "./user/NavAvatar";
 import { getServerSession } from "next-auth";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import ShoppingCart from "./cart/ShoppingCart";
-import NavDropdown from "./NavDropdown";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@nextui-org/react";
 
 export const Navbar = () => {
@@ -101,33 +100,12 @@ export const Navbar = () => {
 
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
-      <NavbarContent className="py-6 basis-1/5 sm:basis-full hidden lg:flex gap-1 justify-start ml-2 uppercase" justify="start">
-        {/* <ul className="hidden lg:flex gap-1 justify-start ml-2 uppercase"> */}
-        {renderDropdownItem("Mens", siteConfig.navItems)}
-        {/* {renderDropdownItem("Womens", siteConfig.womensDd)} */}
-        {/* {renderDropdownItem("Collections", siteConfig.collectionsDd)} */}
-        {/* {renderDropdownItem("Collaborations", siteConfig.collaborationsDd)} */}
-        {/* </ul> */}
+      <NavbarContent className="py-6 basis-1/5 sm:basis-full hidden lg:flex gap-1 justify-start ml-2 capitalize" justify="start">
+        {renderDropdownItem("Mens", siteConfig.mensItems)}
+        {renderDropdownItem("Womens", siteConfig.womensItems)}
+        {renderDropdownItem("Collections", siteConfig.collectionItems)}
+        {renderDropdownItem("Collaborations", siteConfig.collabItems)}
       </NavbarContent>
-      {/* <NavbarContent className="basis-1/5 sm:basis-full" justify="start"> */}
-      {/* <NavDropdown /> */}
-      {/* <ul className="hidden lg:flex gap-4 justify-start ml-2"> */}
-      {/*   {siteConfig.navItems.map((item) => ( */}
-      {/*     <NavbarItem key={item.href}> */}
-      {/*       <NextLink */}
-      {/*         className={clsx( */}
-      {/*           linkStyles({ color: "foreground" }), */}
-      {/*           "data-[active=true]:text-primary data-[active=true]:font-medium" */}
-      {/*         )} */}
-      {/*         color="foreground" */}
-      {/*         href={item.href} */}
-      {/*       > */}
-      {/*         {item.label} */}
-      {/*       </NextLink> */}
-      {/*     </NavbarItem> */}
-      {/*   ))} */}
-      {/* </ul> */}
-      {/* </NavbarContent> */}
 
       <NavbarBrand as="li" className="gap-3 max-w-fit">
         <NextLink className="flex justify-start items-center gap-1" href="/">
