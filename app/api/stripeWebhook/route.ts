@@ -14,7 +14,7 @@ export const POST = async (request: NextRequest) => {
     if (type === "checkout.session.completed") {
       const sessionId = data.object.id;
 
-      fetch(`${process.env.NEXTAUTH_URL}/api/printful-order`, {
+      fetch(`${process.env.NEXTAUTH_URL}/api/printTest`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
