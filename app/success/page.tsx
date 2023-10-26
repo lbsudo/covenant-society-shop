@@ -1,13 +1,39 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { POST } from '../api/printfulTest/route';
+import { useSelector, useDispatch } from 'react-redux';
+import { Product, StateProps } from '@/types/Product';
 
 
 const SuccessPage = () => {
+  const dispatch = useDispatch();
+  const { productData } = useSelector((state: StateProps) => state?.shopping);
+
+  const printfulOrderData = {
+    recipient: {
+      name: "Lawrence Brown",
+      address1: "13818 Woodpecker Rd",
+      city: "Victorville",
+      country_name: "United States",
+      state_name: "California",
+      zip: "92394",
+    },
+    items: productData.map((item: Product) => [
+      {
+        quantity: item.quantity,
+        variant_id: item.variant_id,
+        external_product_id: item.external_product_id,
+      }
+    ]),
+  };
 
   const handleApi = () => {
-    POST();
+    POST(printfulOrderData);
   };
+
+  // useEffect(() => {
+  //   handleApi();
+  // }, []);
 
   return (
     <>

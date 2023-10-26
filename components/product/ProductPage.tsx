@@ -26,7 +26,7 @@ export default function ProductPage({ product }: any) {
     url: `/products/${product.sync_product.external_id}`,
     thumbnail: product.sync_product.thumbnail_url,
     quantity: quantity,
-    variant: selectedVariant.size
+    size: selectedVariant.size
   }
 
   return (

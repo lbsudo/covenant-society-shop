@@ -24,15 +24,25 @@ export default function ShoppingCart() {
     setIsOpen(false);
   };
 
-  const [totalAmt, setTotalAmt] = useState(0)
+  const [totalAmt, setTotalAmt] = useState(0);
+  const [totalQuantity, setTotalQuantity] = useState(0);
+
 
   useEffect(() => {
-    let amt = 0;
+    let amt: number = 0;
     productData.map((item: Product) => {
       amt += Number(item.price) * item.quantity;
       return;
     })
-    setTotalAmt(amt)
+    setTotalAmt(amt);
+    const calculateTotalQuantity = () => {
+      let quantity: number = 0;
+      productData.forEach((item: Product) => {
+        quantity += item.quantity;
+      });
+      setTotalQuantity(quantity);
+    };
+    calculateTotalQuantity();
     // console.log(totalAmt)
     // console.log(productData);
   }, [productData])
@@ -63,7 +73,7 @@ export default function ShoppingCart() {
     }
   };
 
-  const totalQuantity = productData.reduce((total, product: Product) => total + product.quantity, 0);
+  // const totalQuantity = productData.reduce((total, product: Product) => total + product.quantity, 0);
 
   return (
     <div className="relative inline-block">
