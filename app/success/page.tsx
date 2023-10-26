@@ -9,26 +9,26 @@ const SuccessPage = () => {
   const dispatch = useDispatch();
   const { productData } = useSelector((state: StateProps) => state?.shopping);
 
-  const printfulOrderData = {
-    recipient: {
-      name: "Lawrence Brown",
-      address1: "13818 Woodpecker Rd",
-      city: "Victorville",
-      country_name: "United States",
-      state_name: "California",
-      zip: "92394",
-    },
-    items: productData.map((item: Product) => [
-      {
-        quantity: item.quantity,
-        variant_id: item.variant_id,
-        external_product_id: item.external_product_id,
-      }
-    ]),
-  };
+  // const printfulOrderData = {
+  //   recipient: {
+  //     name: "Lawrence Brown",
+  //     address1: "13818 Woodpecker Rd",
+  //     city: "Victorville",
+  //     country_name: "United States",
+  //     state_name: "California",
+  //     zip: "92394",
+  //   },
+  //   items: productData.map((item: Product) => [
+  //     {
+  //       quantity: item.quantity,
+  //       variant_id: item.variant_id,
+  //       external_product_id: item.external_product_id,
+  //     }
+  //   ]),
+  // };
 
   const handleApi = () => {
-    POST(printfulOrderData);
+    POST(productData);
   };
 
   // useEffect(() => {

@@ -1,39 +1,46 @@
 import { Product } from "@/types/Product";
 import { NextResponse, NextRequest } from "next/server";
-import Stripe from "stripe";
+// import Stripe from "stripe";
+import { PrintfulClient } from 'printful-request';
 
 export const POST = async (request: NextRequest) => {
+
+  const API_KEY = process.env.NEXT_PUBLIC_PRINTFUL_API_KEY;
+
+  const printful = new PrintfulClient(`${API_KEY}`);
+
   try {
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-      apiVersion: "2023-08-16",
-    });
+    // const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    //   apiVersion: "2023-08-16",
+    // });
 
     const reqBody = await request.json();
-    const { type, data } = reqBody;
+    const { type, data, items } = reqBody;
+
 
     if (type === "checkout.session.completed") {
-      const sessionId = data.object.id;
+      const session = data.object;
 
-      fetch(`${process.env.NEXTAUTH_URL}/api/printfulOrder`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ sessionId }),
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      // fetch(`${process.env.NEXTAUTH_URL}/api/printfulOrder`, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({ sessionId }),
+      // })
+      //   .then(response => response.json())
+      //   .then(data => {
+      //     console.log(data);
+      //   })
+      //   .catch(error => {
+      //     console.log(error);
+      //   });
 
       // Retrieve the Stripe session
-      // const session = await stripe.checkout.sessions.retrieve(paymentIntent.checkout_session_id);
+      // const session = await stripe.checkout.sessions.retrieve(paymentIntent.checkout_session_id)
 
       // Get the recipient's address from the session
-      // const recipientAddress = session.shipping_details?.address;
+      const recipientAddress = session.shipping_details?.address
 
       // Get the productData from the session metadata if it exists
       // const productData = session.metadata?.productData ? JSON.parse(session.metadata.productData) : [];
@@ -52,12 +59,34 @@ export const POST = async (request: NextRequest) => {
       //     state_name: recipientAddress?.state,
       //     zip: recipientAddress?.postal_code
       //   },
-      //   items: items ? items.map((item: Product) => ({
-      //     quantity: item.quantity,
-      //     variant_id: item.sync_variant.variant_id,
-      //     external_variant_id: item.sync_variant.external_id,
-      //   })) : [],
+      //   items: items.map((item: Product) => ([
+      //     {
+      //       quantity: item.quantity,
+      //       variant_id: item.sync_variant.variant_id,
+      //       external_variant_id: item.sync_variant.external_id,
+      //     }
+      //   ])),
       // };
+
+      printful.post("orders", {
+        recipient: {
+          name: session.shipping_details?.name,
+          phone: session.shipping_details?.phone,
+          email: session.customer_email,
+          address1: recipientAddress?.line1,
+          city: recipientAddress?.city,
+          country_name: recipientAddress?.country,
+          state_name: recipientAddress?.state,
+          zip: recipientAddress?.postal_code
+        },
+        items: items.map((item: Product) => ([
+          {
+            quantity: item.quantity,
+            variant_id: item.variant_id,
+            external_product_id: item.external_product_id,
+          }
+        ]))
+      }).then(({ result }) => console.log(result));
 
       // Make a POST request to the Printful API
       // fetch('https://api.printful.com/orders', {
