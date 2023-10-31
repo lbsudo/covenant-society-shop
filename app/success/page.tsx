@@ -1,13 +1,16 @@
-'use client'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { POST } from '../api/printfulTest/route';
-import { useSelector, useDispatch } from 'react-redux';
 import { Product, StateProps } from '@/types/Product';
+import { store } from '../../redux/store'
+import TestButton from '@/components/TestButton';
+import useServer from 'next/dynamic';
+
 
 
 const SuccessPage = () => {
-  const dispatch = useDispatch();
-  const { productData } = useSelector((state: StateProps) => state?.shopping);
+
+  const { shopping } = store.getState();
+  const productData = shopping.productData;
 
   // const printfulOrderData = {
   //   recipient: {
@@ -27,9 +30,15 @@ const SuccessPage = () => {
   //   ]),
   // };
 
-  const handleApi = () => {
-    POST(productData);
-  };
+  // function handleApi() {
+  //   "use server"
+  //   POST(productData);
+  // };
+
+
+  // const handleApi = async () => {
+  //   POST(productData);
+  // };
 
   // useEffect(() => {
   //   handleApi();
@@ -39,7 +48,8 @@ const SuccessPage = () => {
     <>
       <div className='flex flex-col justify-center items-center'>
         <h2>Your Payment Was Successful!</h2>
-        <button onClick={handleApi} className='border p-2 mt-3 uppercase'>Initiate Printful API</button>
+        {/* <TestButton handleApi={handleApi} /> */}
+        {/* <button onClick={handleApi} className='border p-2 mt-3 uppercase'>Initiate Printful API</button> */}
       </div>
     </>
   );

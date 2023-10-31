@@ -1,13 +1,11 @@
 import { Product } from "@/types/Product";
 import { NextResponse, NextRequest } from "next/server";
 // import Stripe from "stripe";
-import { PrintfulClient } from 'printful-request';
 
 export const POST = async (request: NextRequest) => {
 
   const API_KEY = process.env.NEXT_PUBLIC_PRINTFUL_API_KEY;
 
-  const printful = new PrintfulClient(`${API_KEY}`);
 
   try {
     // const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -68,25 +66,6 @@ export const POST = async (request: NextRequest) => {
       //   ])),
       // };
 
-      printful.post("orders", {
-        recipient: {
-          name: session.shipping_details?.name,
-          phone: session.shipping_details?.phone,
-          email: session.customer_email,
-          address1: recipientAddress?.line1,
-          city: recipientAddress?.city,
-          country_name: recipientAddress?.country,
-          state_name: recipientAddress?.state,
-          zip: recipientAddress?.postal_code
-        },
-        items: items.map((item: Product) => ([
-          {
-            quantity: item.quantity,
-            variant_id: item.variant_id,
-            external_product_id: item.external_product_id,
-          }
-        ]))
-      }).then(({ result }) => console.log(result));
 
       // Make a POST request to the Printful API
       // fetch('https://api.printful.com/orders', {
