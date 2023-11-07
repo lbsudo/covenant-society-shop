@@ -20,7 +20,7 @@ export const POST = async (request: NextRequest) => {
     if (type === "checkout.session.completed") {
       const session = data.object;
 
-      const recipientInfo = session
+      const recipientInfo = session?.shipping_details
 
       const testData = {
         id: 1,
