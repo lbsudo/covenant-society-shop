@@ -1,5 +1,5 @@
 import React from 'react'
-import { GET } from '../api/StoreData/route'
+import GET from '../api/allProducts/route'
 
 export default async function page() {
   const productData = await GET();

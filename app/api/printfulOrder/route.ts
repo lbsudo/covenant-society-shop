@@ -9,7 +9,7 @@ export const POST = async (sessionId: any) => {
   const productData = state.shopping.productData;
 
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: "2023-08-16",
+    apiVersion: "2023-10-16",
   });
 
   const session = await stripe.checkout.sessions.retrieve(sessionId);

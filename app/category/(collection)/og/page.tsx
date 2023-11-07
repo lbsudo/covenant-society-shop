@@ -1,5 +1,5 @@
-import { Product } from "@/types/Product";
-import ProductGrid from "@/components/product/ProductGrid";
+// import { Product } from "@/types/Product";
+// import ProductGrid from "@/components/product/ProductGrid";
 
 export default async function Page() {
 

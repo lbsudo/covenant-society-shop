@@ -1,10 +1,9 @@
 import { Product } from "../../../types/Product";
 
-export async function GET() {
-  const Lim = 40;
+export default async function GET() {
   const API_KEY = process.env.NEXT_PUBLIC_PRINTFUL_API_KEY;
   const API_URL = 'https://api.printful.com';
-  const url = `${API_URL}/store/products?limit=${Lim}`;
+  const url = `${API_URL}/store/products`;
 
   const res = await fetch(url, {
     method: "GET",

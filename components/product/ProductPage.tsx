@@ -17,7 +17,7 @@ export default function ProductPage({ product }: any) {
   };
   const dispatch = useDispatch();
   const item = {
-    id: product.sync_product.id,
+    productId: product.sync_product.id,
     name: product.sync_product.name,
     variant_id: selectedVariant.variant_id,
     product_template_id: selectedVariant.sync_product_id,

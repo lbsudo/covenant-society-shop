@@ -1,4 +1,4 @@
-import { GET } from "../../../api/allProducts/route";
+import GET from "../../../api/allProducts/route";
 import ProductGrid from "@/components/product/ProductGrid";
 
 export default async function Page() {

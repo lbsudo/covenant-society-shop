@@ -5,25 +5,27 @@ import Stripe from "stripe";
 export const POST = async (request: NextRequest) => {
   try {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-      apiVersion: "2023-08-16",
+      apiVersion: "2023-10-16",
     });
 
     const reqBody = await request.json();
     const { items, email } = reqBody;
 
 
-    const extractingItems = items.map((item: Product) => ({
-      quantity: item.quantity,
-      price_data: {
-        currency: "usd",
-        unit_amount: Number(item.price) * 100,
-        product_data: {
-          name: item.name,
-          description: item.size,
-          images: [item.thumbnail],
+    const extractingItems = items.map((item: Product) => (
+      {
+        quantity: item.quantity,
+        price_data: {
+          currency: "usd",
+          unit_amount: Number(item.price) * 100,
+          product_data: {
+            name: item.name,
+            description: item.size,
+            images: [item.thumbnail],
+          },
         },
-      },
-    }));
+      }
+    ));
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],

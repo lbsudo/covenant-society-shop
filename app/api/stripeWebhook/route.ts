@@ -47,13 +47,13 @@ export const POST = async (request: NextRequest) => {
         customerEmail: customer.email,
       }
 
-      const customerOrder = orderData.map((item: Product) => ([
-        {
-          quantity: item.quantity,
-          variant_id: item.variant_id,
-          product_template_id: item.product_template_id,
-        }
-      ]));
+      // const customerOrder = orderData.map((item: Product) => ([
+      //   {
+      //     quantity: item.quantity,
+      //     variant_id: item.variant_id,
+      //     product_template_id: item.product_template_id,
+      //   }
+      // ]));
 
 
       // const recipientInfo = session?.shipping_details
@@ -129,7 +129,7 @@ export const POST = async (request: NextRequest) => {
       // return new Response(JSON.stringify(order), {
       //   status: 200
       // })
-      return NextResponse.json({ message: "Webhook received successfully", customerData, customerOrder });
+      return NextResponse.json({ message: "Webhook received successfully", customerData, orderData });
 
     }
 
