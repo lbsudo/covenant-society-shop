@@ -17,9 +17,7 @@ export default function ProductPage({ product }: any) {
   };
   const dispatch = useDispatch();
   const item = {
-    id: product.sync_product.id,
-    external_id: product.sync_product.external_id,
-    external_product_id: selectedVariant.external_id,
+    ProductId: product.sync_product.id,
     variant_id: selectedVariant.variant_id,
     name: product.sync_product.name,
     price: selectedVariant.retail_price,
@@ -28,6 +26,7 @@ export default function ProductPage({ product }: any) {
     quantity: quantity,
     size: selectedVariant.size
   }
+  console.log(item)
 
   return (
     <>

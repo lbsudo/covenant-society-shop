@@ -1,9 +1,9 @@
 import { Product } from "@/types/Product";
 import { NextResponse, NextRequest } from "next/server";
-// import Stripe from "stripe";
+import Stripe from "stripe";
+
 
 export const POST = async (request: NextRequest) => {
-
   const API_KEY = process.env.NEXT_PUBLIC_PRINTFUL_API_KEY;
 
 
@@ -13,41 +13,41 @@ export const POST = async (request: NextRequest) => {
     // });
 
     const reqBody = await request.json();
-    const { type, data, items } = reqBody;
+    const { type, data } = reqBody;
 
 
     if (type === "checkout.session.completed") {
       const session = data.object;
 
-      // fetch(`${process.env.NEXTAUTH_URL}/api/printfulOrder`, {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({ sessionId }),
-      // })
-      //   .then(response => response.json())
-      //   .then(data => {
-      //     console.log(data);
-      //   })
-      //   .catch(error => {
-      //     console.log(error);
-      //   });
+      const recipientInfo = session.shipping_details
 
-      // Retrieve the Stripe session
-      // const session = await stripe.checkout.sessions.retrieve(paymentIntent.checkout_session_id)
+      console.log(recipientInfo);
 
-      // Get the recipient's address from the session
-      const recipientAddress = session.shipping_details?.address
+      // const userTest = {
+      //   name: recipientInfo.name,
+      //   // const company :recipientInfo.name,
+      //   address1: recipientInfo.line1,
+      //   address2: recipientInfo?.line2,
+      //   city: recipientInfo.city,
+      //   state_name: recipientInfo.state,
+      //   country_name: recipientInfo.country,
+      //   zip: recipientInfo.postal_code,
+      //   phone: recipientInfo.email,
+      //   email: recipientInfo.phone,
 
-      // Get the productData from the session metadata if it exists
-      // const productData = session.metadata?.productData ? JSON.parse(session.metadata.productData) : [];
+      // }
 
-      // Use the productData in your webhook logic
+      // const name = recipientInfo.name;
+      // // const company = recipientInfo.name;
+      // const address1 = recipientInfo.line1;
+      // const address2 = recipientInfo?.line2;
+      // const city = recipientInfo.city;
+      // const state_name = recipientInfo.state;
+      // const country_name = recipientInfo.country;
+      // const zip = recipientInfo.postal_code;
+      // const phone = recipientInfo.email;
+      // const email = recipientInfo.phone;
 
-      // Construct the data for the Printful order
-      // const printfulOrderData = {
-      //   recipient: {
       //     name: session.shipping_details?.name,
       //     phone: session.shipping_details?.phone,
       //     email: session.customer_email,
@@ -56,6 +56,10 @@ export const POST = async (request: NextRequest) => {
       //     country_name: recipientAddress?.country,
       //     state_name: recipientAddress?.state,
       //     zip: recipientAddress?.postal_code
+
+      // Construct the data for the Printful order
+      // const printfulOrderData = {
+      //   recipient: {
       //   },
       //   items: items.map((item: Product) => ([
       //     {
@@ -67,27 +71,6 @@ export const POST = async (request: NextRequest) => {
       // };
 
 
-      // Make a POST request to the Printful API
-      // fetch('https://api.printful.com/orders', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'Authorization': `Bearer ${process.env.PRINTFUL_API_KEY}`
-      //   },
-      //   body: JSON.stringify(printfulOrderData)
-      // })
-      //   .then(response => response.json())
-      //   .then(data => {
-      //     // Handle the response from the Printful API
-      //     console.log(data);
-      //   })
-      //   .catch(error => {
-      //     // Handle any errors from the Printful API
-      //     console.log(error);
-      //   });
-
-      // Perform necessary actions when payment intent is succeeded
-      // For example, update your database, send a confirmation email, or fulfill the order
       console.log("Checkout Session Completed:");
     }
 
