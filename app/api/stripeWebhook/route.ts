@@ -90,9 +90,9 @@ export const POST = async (request: NextRequest) => {
 
 
       console.log("Checkout Session Completed:");
-      return new Response(JSON.stringify(order), {
-        status: 200
-      })
+      // return new Response(JSON.stringify(order), {
+      //   status: 200
+      // })
 
     }
 
