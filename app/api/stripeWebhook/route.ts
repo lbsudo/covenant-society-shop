@@ -121,7 +121,7 @@ export const POST = async (request: NextRequest) => {
       // return new Response(JSON.stringify(order), {
       //   status: 200
       // })
-      return NextResponse.json({ message: "Webhook received successfully", customerData, orderData });
+      return NextResponse.json({ message: "Webhook received successfully", customerData, orderJson });
 
     }
 
