@@ -37,6 +37,9 @@ export const POST = async (request: NextRequest) => {
           shipping_rate: "shr_1Ny2LiFXWggz9FO3FWaO5140"
         }
       ],
+      phone_number_collection: {
+        enabled: true,
+      },
       billing_address_collection: "required",
       success_url: `${process.env.NEXTAUTH_URL}/success`,
       cancel_url: `${process.env.NEXTAUTH_URL}/`,

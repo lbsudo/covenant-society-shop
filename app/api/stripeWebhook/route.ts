@@ -5,7 +5,7 @@ import createOrder from "@/lib/createOrder"
 
 
 export const POST = async (request: NextRequest) => {
-  const API_KEY = process.env.NEXT_PUBLIC_PRINTFUL_API_KEY;
+  // const API_KEY = process.env.NEXT_PUBLIC_PRINTFUL_API_KEY;
 
 
   try {
@@ -18,7 +18,20 @@ export const POST = async (request: NextRequest) => {
 
 
     if (type === "checkout.session.completed") {
-      // const session = data.object;
+      const session = data.object;
+
+      const customer = session.customer_details;
+
+      const customerName = customer.address.name;
+      const customerLine1 = customer.address.line1;
+      const customerLine2 = customer.address.line2;
+      const customerCity = customer.address.city;
+      const customerState = customer.address.state;
+      const customerCountry = customer.address.country;
+      const customerZip = customer.address.postal_code;
+      const customerPhone = customer.phone;
+      const customerEmail = customer.email;
+
 
       // const recipientInfo = session?.shipping_details
 
