@@ -15,7 +15,7 @@ export default function ShoppingCart() {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const { productData } = useSelector((state: StateProps) => state?.shopping);
-  const { orderData } = useSelector((state: StateProps) => state?.shopping);
+  // const { orderData } = useSelector((state: StateProps) => state?.shopping);
 
   console.log(productData)
 
@@ -51,7 +51,7 @@ export default function ShoppingCart() {
   }, [productData])
 
 
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   const handleCheckout = async () => {
     const stripePromise = loadStripe(`${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`)
     const stripe = await stripePromise;
@@ -62,14 +62,14 @@ export default function ShoppingCart() {
       },
       body: JSON.stringify({
         items: productData,
-        emai: session?.user?.email,
+        // emai: session?.user?.email,
       }),
     });
     const data = await response.json()
 
     if (response.ok) {
-      dispatch(saveOrder({ order: productData, id: data.id }))
       stripe?.redirectToCheckout({ sessionId: data.id })
+      dispatch(saveOrder({ order: productData, id: data.id }))
       // dispatch(resetCart());
     } else {
       throw new Error("Failed to create Stripe Payment")

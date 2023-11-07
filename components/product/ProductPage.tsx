@@ -17,7 +17,7 @@ export default function ProductPage({ product }: any) {
   };
   const dispatch = useDispatch();
   const item = {
-    productId: product.sync_product.id,
+    id: product.sync_product.id,
     name: product.sync_product.name,
     variant_id: selectedVariant.variant_id,
     product_template_id: selectedVariant.sync_product_id,
@@ -52,7 +52,7 @@ export default function ProductPage({ product }: any) {
             <div className="mt-2 space-x-2">
               <p className="font-semibold text-lg">Sizes:</p>
               <div className="flex items-center space-x-2">
-                {product.sync_variants.map((variant: any) => (
+                {product.sync_variants.map((variant: SyncVariant) => (
                   <button
                     key={variant.external_id}
                     className={`font-semibold text-lg border px-3 py-1 rounded-lg ${variant.external_id === selectedVariant.external_id ? 'bg-primary text-white' : 'border-gray-300'

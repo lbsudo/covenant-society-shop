@@ -3,34 +3,37 @@ import { NextResponse, NextRequest } from "next/server";
 import Stripe from "stripe";
 
 export const POST = async (request: NextRequest) => {
+  const reqBody = await request.json();
+  const { items, email } = reqBody;
+  const extractingItems = items.map((item: Product) => (
+    {
+      quantity: item.quantity,
+      price_data: {
+        currency: "usd",
+        unit_amount: Number(item.price) * 100,
+        product_data: {
+          name: item.name,
+          description: item.size,
+          images: [item.thumbnail],
+          metadata: {
+            variant_id: item.variant_id,
+          }
+        },
+      },
+    }
+  ));
   try {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
       apiVersion: "2023-10-16",
     });
 
-    const reqBody = await request.json();
-    const { items, email } = reqBody;
 
 
-    const extractingItems = items.map((item: Product) => (
-      {
-        quantity: item.quantity,
-        price_data: {
-          currency: "usd",
-          unit_amount: Number(item.price) * 100,
-          product_data: {
-            name: item.name,
-            description: item.size,
-            images: [item.thumbnail],
-          },
-        },
-      }
-    ));
 
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
       line_items: extractingItems,
       mode: "payment",
+      payment_method_types: ["card"],
       shipping_address_collection: {
         allowed_countries: ['US']
       },
@@ -47,16 +50,16 @@ export const POST = async (request: NextRequest) => {
       cancel_url: `${process.env.NEXTAUTH_URL}/`,
       metadata: {
         email,
-        items: JSON.stringify(items),
+        // items: JSON.stringify(items),
       },
     });
-
     return NextResponse.json({
       message: "Connection is Active",
       success: true,
       id: session.id,
     });
   } catch (error: any) {
+    console.log(extractingItems)
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 };
