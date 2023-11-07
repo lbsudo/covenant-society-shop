@@ -20,8 +20,8 @@ export const POST = async (request: NextRequest) => {
     if (type === "checkout.session.completed") {
       const session = data.object;
 
-      const orderData = JSON.parse(session.metadata.items);
-      // const orderJson = JSON.parse(orderData);
+      const orderString = session.metadata.items;
+      const orderData = JSON.parse(orderString);
 
       const customer = session.customer_details;
 

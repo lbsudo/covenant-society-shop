@@ -17,17 +17,16 @@ export default function ProductPage({ product }: any) {
   };
   const dispatch = useDispatch();
   const item = {
-    name: product.sync_product.name,
-    productId: product.sync_product.id,
-    product_template_id: selectedVariant.sync_product_id,
+    id: product.sync_product.id,
     variant_id: selectedVariant.variant_id,
-    quantity: quantity,
+    name: product.sync_product.name,
     price: selectedVariant.retail_price,
     url: `/products/${product.sync_product.external_id}`,
+    quantity: quantity,
     thumbnail: product.sync_product.thumbnail_url,
-    size: selectedVariant.size
+    variant: selectedVariant.size
   }
-  console.log(item)
+  // console.log(item)
 
   return (
     <>
