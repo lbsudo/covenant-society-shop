@@ -39,6 +39,9 @@ const SuccessPage = () => {
     })
   };
 
+  // const parsy = JSON.parse(stringy)
+
+
 
   return (
     <>
