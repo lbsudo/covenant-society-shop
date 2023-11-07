@@ -17,13 +17,14 @@ export default function ProductPage({ product }: any) {
   };
   const dispatch = useDispatch();
   const item = {
-    ProductId: product.sync_product.id,
-    variant_id: selectedVariant.variant_id,
     name: product.sync_product.name,
+    productId: product.sync_product.id,
+    product_template_id: selectedVariant.sync_product_id,
+    variant_id: selectedVariant.variant_id,
+    quantity: quantity,
     price: selectedVariant.retail_price,
     url: `/products/${product.sync_product.external_id}`,
     thumbnail: product.sync_product.thumbnail_url,
-    quantity: quantity,
     size: selectedVariant.size
   }
   console.log(item)

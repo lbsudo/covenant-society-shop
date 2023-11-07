@@ -20,8 +20,8 @@ export const POST = async (request: NextRequest) => {
     if (type === "checkout.session.completed") {
       const session = data.object;
 
-      const orderData = session.metadata.items;
-      const orderJson = JSON.parse(orderData);
+      const orderData = JSON.parse(session.metadata.items);
+      // const orderJson = JSON.parse(orderData);
 
       const customer = session.customer_details;
 
@@ -46,6 +46,12 @@ export const POST = async (request: NextRequest) => {
         customerPhone: customer.phone,
         customerEmail: customer.email,
       }
+
+      const customerOrder = orderData.map((item: Product) => ({
+        quantity: item.quantity,
+        variant_id: item.sync_variant.variant_id,
+        external_product_id: item.sync_variant.external_id,
+      }));
 
 
       // const recipientInfo = session?.shipping_details
@@ -121,7 +127,7 @@ export const POST = async (request: NextRequest) => {
       // return new Response(JSON.stringify(order), {
       //   status: 200
       // })
-      return NextResponse.json({ message: "Webhook received successfully", customerData, orderJson });
+      return NextResponse.json({ message: "Webhook received successfully", customerData, customerOrder });
 
     }
 
