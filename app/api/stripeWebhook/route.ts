@@ -1,6 +1,7 @@
 import { Product } from "@/types/Product";
 import { NextResponse, NextRequest } from "next/server";
 import Stripe from "stripe";
+import createOrder from "@/lib/createOrder"
 
 
 export const POST = async (request: NextRequest) => {
@@ -19,10 +20,27 @@ export const POST = async (request: NextRequest) => {
     if (type === "checkout.session.completed") {
       const session = data.object;
 
-      const recipientInfo = session.shipping_details
+      const recipientInfo = session
 
-      console.log(recipientInfo);
+      const testData = {
+        id: 1,
+        orderId: 101,
+        productId: 6333747343983573,
+        variantId: 1500,
+        quantity: 2,
+        fullName: recipientInfo.name,
+        company: "",
+        addressLine1: recipientInfo.line1,
+        addressLine2: recipientInfo.line2,
+        country: recipientInfo.country,
+        stateProvincePrefecture: recipientInfo.state,
+        city: recipientInfo.city,
+        postalZipCode: recipientInfo.postal_code,
+        phone: recipientInfo.phone,
+      }
 
+
+      const order = await createOrder(testData);
       // const userTest = {
       //   name: recipientInfo.name,
       //   // const company :recipientInfo.name,
@@ -72,6 +90,10 @@ export const POST = async (request: NextRequest) => {
 
 
       console.log("Checkout Session Completed:");
+      return new Response(JSON.stringify(order), {
+        status: 200
+      })
+
     }
 
     return NextResponse.json({ message: "Webhook received successfully" });
