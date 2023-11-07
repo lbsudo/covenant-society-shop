@@ -36,7 +36,7 @@ const CartItem = () => {
                   <p className='text-small font-bold mb-6'>{item?.name}</p>
                 </div>
                 <div className='flex flex-col items-start justify-center'>
-                  <p className='flex items-center justify-center font-bold'>{item?.variant}</p>
+                  <p className='flex items-center justify-center font-bold'>{item?.size}</p>
                   <p className='flex items-center justify-center'>
                     <FormattedPrice amount={Number(item?.price) * item?.quantity} />
                   </p>
@@ -59,7 +59,7 @@ const CartItem = () => {
                 <div className='pt-3'>
                   <button
                     onClick={() =>
-                      dispatch(deleteProduct(item?.variant)) &&
+                      dispatch(deleteProduct(item?.size)) &&
                       toast.success(`Product removed successfully`)}
                     className="flex flex-row justify-center items-center"
                   >

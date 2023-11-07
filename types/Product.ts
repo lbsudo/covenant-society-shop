@@ -62,9 +62,10 @@ export interface Product {
   sync_variant: SyncVariant;
   sync_variants: SyncVariant[];
   quantity: number
-  variant: string;
+  size: string;
   variant_id: number;
   external_product_id: string;
+  product_template_id: number;
   price: string;
 }
 

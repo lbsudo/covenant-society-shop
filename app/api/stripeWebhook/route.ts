@@ -47,11 +47,13 @@ export const POST = async (request: NextRequest) => {
         customerEmail: customer.email,
       }
 
-      const customerOrder = orderData.map((item: Product) => ({
-        quantity: item.quantity,
-        variant_id: item.sync_variant.variant_id,
-        external_product_id: item.sync_variant.external_id,
-      }));
+      const customerOrder = orderData.map((item: Product) => ([
+        {
+          quantity: item.quantity,
+          variant_id: item.variant_id,
+          product_template_id: item.product_template_id,
+        }
+      ]));
 
 
       // const recipientInfo = session?.shipping_details
