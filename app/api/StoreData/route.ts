@@ -35,47 +35,7 @@ export async function GET() {
   const productData = await Promise.all(productResponses.map((response) => response.json()));
   const productDetails = productData.map((response) => response.result);
 
-  // return productDetails;
-
-  const url2 = `${API_URL}/stores/${10183355}`;
-
-  const res2 = await fetch(url2, {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${API_KEY}`,
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-    },
-  });
-
-  if (!res2.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  const data2 = await res2.json();
-
-  const url3 = `${API_URL}/categories`;
-
-  const res3 = await fetch(url3, {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${API_KEY}`,
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-    },
-  });
-
-  if (!res3.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  const data3 = await res3.json();
-
-  return {
-    data2,
-    productDetails,
-    data3,
-  };
+  return productDetails;
 }
 
 
