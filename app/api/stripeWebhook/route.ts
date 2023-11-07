@@ -22,15 +22,27 @@ export const POST = async (request: NextRequest) => {
 
       const customer = session.customer_details;
 
-      const customerName = customer.address.name;
-      const customerLine1 = customer.address.line1;
-      const customerLine2 = customer.address.line2;
-      const customerCity = customer.address.city;
-      const customerState = customer.address.state;
-      const customerCountry = customer.address.country;
-      const customerZip = customer.address.postal_code;
-      const customerPhone = customer.phone;
-      const customerEmail = customer.email;
+      // const customerName = customer.address.name;
+      // const customerLine1 = customer.address.line1;
+      // const customerLine2 = customer.address.line2;
+      // const customerCity = customer.address.city;
+      // const customerState = customer.address.state;
+      // const customerCountry = customer.address.country;
+      // const customerZip = customer.address.postal_code;
+      // const customerPhone = customer.phone;
+      // const customerEmail = customer.email;
+
+      const customerData = {
+        customerName: customer.address.name,
+        customerLine1: customer.address.line1,
+        customerLine2: customer.address.line2,
+        customerCity: customer.address.city,
+        customerState: customer.address.state,
+        customerCountry: customer.address.country,
+        customerZip: customer.address.postal_code,
+        customerPhone: customer.phone,
+        customerEmail: customer.email,
+      }
 
 
       // const recipientInfo = session?.shipping_details
@@ -106,6 +118,7 @@ export const POST = async (request: NextRequest) => {
       // return new Response(JSON.stringify(order), {
       //   status: 200
       // })
+      return NextResponse.json({ message: "Webhook received successfully", customerData });
 
     }
 
