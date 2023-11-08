@@ -64,8 +64,9 @@ export interface Product {
   quantity: number
   size: string;
   variant_id: number;
-  external_product_id: string;
-  product_template_id: number;
+  external_variant_id: string;
+  // external_product_id: string;
+  // product_template_id: number;
   price: string;
 }
 

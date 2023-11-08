@@ -59,10 +59,12 @@ export const POST = async (request: NextRequest) => {
           email: session.email,
         },
         items: orderData.map((item: Product) => ({
-          variant_id: item.variant_id,
+          // variant_id: item.variant_id,
           quantity: item.quantity,
-          product_template_id: item.product_template_id,
+          external_variant_id: item.external_variant_id,
         })),
+        needs_approval: true,
+
       }
 
       // const customerOrder = orderData.map((item: Product) => ([
