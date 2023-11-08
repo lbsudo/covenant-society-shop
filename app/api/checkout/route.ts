@@ -23,7 +23,6 @@ export const POST = async (request: NextRequest) => {
 
   const orderData = items.map((item: Product) => (
     {
-      // variant_id: item.variant_id,
       external_variant_id: item.external_variant_id,
       quantity: item.quantity,
     }

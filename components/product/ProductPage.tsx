@@ -9,7 +9,6 @@ import toast, { Toaster } from 'react-hot-toast';
 export default function ProductPage({ product }: any) {
   const [quantity, setQuantity] = useState(1);
   const [selectedVariant, setSelectedVariant] = useState(product.sync_variants[0]);
-  // console.log(product.SyncVariant.id)
 
   const handleVariantChange = (variant: SyncVariant) => {
     setSelectedVariant(variant);
