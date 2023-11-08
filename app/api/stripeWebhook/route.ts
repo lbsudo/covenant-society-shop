@@ -61,8 +61,8 @@ export const POST = async (request: NextRequest) => {
           email: session.email,
         },
         items: orderData.map((item: Product) => ({
-          quantity: item.quantity,
           variant_id: item.variant_id,
+          quantity: item.quantity,
           product_template_id: item.product_template_id,
         })),
       }
