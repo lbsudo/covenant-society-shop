@@ -16,20 +16,20 @@ export const POST = async (request: NextRequest) => {
       const orderString = session.metadata.items;
       const orderData = JSON.parse(orderString);
 
-      const customer = session.customer_details;
+      const customer = session.shipping_details;
 
       const printfulOrderData = {
         external_id: session.created,
         shipping: "STANDARD",
         recipient: {
-          name: customer.address.name,
+          name: customer.name,
           address1: customer.address.line1,
           city: customer.address.city,
           state_code: customer.address.state,
           country_code: customer.address.country,
           zip: customer.address.postal_code,
-          phone: customer.phone,
-          email: session.email,
+          phone: session.customer_details.phone,
+          email: session.customer_details.email,
         },
         items: orderData.map((item: Product) => ({
           // variant_id: item.variant_id,
