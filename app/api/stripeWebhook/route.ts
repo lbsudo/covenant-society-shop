@@ -1,4 +1,4 @@
-// import { Product } from "@/types/Product";
+import { Product } from "@/types/Product";
 import { NextResponse, NextRequest } from "next/server";
 // import Stripe from "stripe";
 // import createOrder from "@/lib/createOrder"
@@ -45,6 +45,26 @@ export const POST = async (request: NextRequest) => {
         customerZip: customer.address.postal_code,
         customerPhone: customer.phone,
         customerEmail: customer.email,
+      }
+
+      const printfulOrderData = {
+        external_id: "4235234213",
+        shipping: "STANDARD",
+        recipient: {
+          name: customer.address.name,
+          address1: customer.address.line1,
+          city: customer.address.city,
+          state_code: customer.address.state,
+          country_code: customer.address.country,
+          zip: customer.address.postal_code,
+          phone: customer.phone,
+          email: session.email,
+        },
+        items: orderData.map((item: Product) => ({
+          quantity: item.quantity,
+          variant_id: item.variant_id,
+          product_template_id: item.product_template_id,
+        })),
       }
 
       // const customerOrder = orderData.map((item: Product) => ([
@@ -124,12 +144,32 @@ export const POST = async (request: NextRequest) => {
       //   ])),
       // };
 
+      // Make a POST request to the Printful API
+      const makeOrder = fetch('https://api.printful.com/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.PRINTFUL_API_KEY}`
+        },
+        body: JSON.stringify(printfulOrderData)
+      })
+        .then(response => response.json())
+        .then(data => {
+          // Handle the response from the Printful API
+          console.log(data);
+        })
+        .catch(error => {
+          // Handle any errors from the Printful API
+          console.log(error);
+        });
+
+
 
       console.log("Checkout Session Completed:");
       // return new Response(JSON.stringify(order), {
       //   status: 200
       // })
-      return NextResponse.json({ message: "Webhook received successfully", customerData, orderData });
+      return NextResponse.json({ message: "Webhook received successfully", customerData, orderData, makeOrder });
 
     }
 
