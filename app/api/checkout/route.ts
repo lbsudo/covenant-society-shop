@@ -5,6 +5,7 @@ import Stripe from "stripe";
 export const POST = async (request: NextRequest) => {
   const reqBody = await request.json();
   const { items, email } = reqBody;
+
   const extractingItems = items.map((item: Product) => (
     {
       quantity: item.quantity,
@@ -20,6 +21,13 @@ export const POST = async (request: NextRequest) => {
     }
   ));
 
+  const orderData = items.map((item: Product) => (
+    {
+      variant_id: item.variant_id,
+      product_template_id: item.product_template_id,
+      quantity: item.quantity,
+    }
+  ));
 
   try {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -49,7 +57,7 @@ export const POST = async (request: NextRequest) => {
       cancel_url: `${process.env.NEXTAUTH_URL}/`,
       metadata: {
         email,
-        // items: JSON.stringify(items),
+        items: JSON.stringify(orderData),
       },
     });
     return NextResponse.json({

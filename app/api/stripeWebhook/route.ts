@@ -14,7 +14,7 @@ export const POST = async (request: NextRequest) => {
     // });
 
     const reqBody = await request.json();
-    const { type, data, items } = reqBody;
+    const { type, data } = reqBody;
 
 
     if (type === "checkout.session.completed") {
@@ -129,7 +129,7 @@ export const POST = async (request: NextRequest) => {
       // return new Response(JSON.stringify(order), {
       //   status: 200
       // })
-      return NextResponse.json({ message: "Webhook received successfully", customerData, items });
+      return NextResponse.json({ message: "Webhook received successfully", customerData });
 
     }
 
