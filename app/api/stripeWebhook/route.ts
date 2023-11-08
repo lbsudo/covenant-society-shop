@@ -145,23 +145,42 @@ export const POST = async (request: NextRequest) => {
       // };
 
       // Make a POST request to the Printful API
-      const makeOrder = fetch('https://api.printful.com/orders', {
-        method: 'POST',
+      const printfulResponse = await fetch("https://api.printful.com/orders", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.PRINTFUL_API_KEY}`
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.PRINTFUL_API_KEY}`,
         },
-        body: JSON.stringify(printfulOrderData)
-      })
-        .then(response => response.json())
-        .then(data => {
-          // Handle the response from the Printful API
-          console.log(data);
-        })
-        .catch(error => {
-          // Handle any errors from the Printful API
-          console.log(error);
-        });
+        body: JSON.stringify(printfulOrderData),
+      });
+
+      const printfulOrder = await printfulResponse.json();
+
+      if (printfulResponse.ok) {
+        console.log("Printful Order Created:", printfulOrder);
+      } else {
+        console.error("Failed to create Printful order:", printfulOrder);
+      }
+
+
+
+      // const makeOrder = fetch('https://api.printful.com/orders', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'Authorization': `Bearer ${process.env.PRINTFUL_API_KEY}`
+      //   },
+      //   body: JSON.stringify(printfulOrderData)
+      // })
+      //   .then(response => response.json())
+      //   .then(data => {
+      //     // Handle the response from the Printful API
+      //     console.log(data);
+      //   })
+      //   .catch(error => {
+      //     // Handle any errors from the Printful API
+      //     console.log(error);
+      //   });
 
 
 
@@ -169,7 +188,7 @@ export const POST = async (request: NextRequest) => {
       // return new Response(JSON.stringify(order), {
       //   status: 200
       // })
-      return NextResponse.json({ message: "Webhook received successfully", customerData, orderData, makeOrder });
+      return NextResponse.json({ message: "Webhook received successfully", customerData, orderData, printfulOrder });
 
     }
 
