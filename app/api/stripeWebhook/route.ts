@@ -1,7 +1,7 @@
-import { Product } from "@/types/Product";
+// import { Product } from "@/types/Product";
 import { NextResponse, NextRequest } from "next/server";
-import Stripe from "stripe";
-import createOrder from "@/lib/createOrder"
+// import Stripe from "stripe";
+// import createOrder from "@/lib/createOrder"
 
 
 export const POST = async (request: NextRequest) => {
@@ -14,7 +14,7 @@ export const POST = async (request: NextRequest) => {
     // });
 
     const reqBody = await request.json();
-    const { type, data } = reqBody;
+    const { type, data, items } = reqBody;
 
 
     if (type === "checkout.session.completed") {
@@ -129,7 +129,7 @@ export const POST = async (request: NextRequest) => {
       // return new Response(JSON.stringify(order), {
       //   status: 200
       // })
-      return NextResponse.json({ message: "Webhook received successfully", customerData });
+      return NextResponse.json({ message: "Webhook received successfully", customerData, items });
 
     }
 
