@@ -20,7 +20,6 @@ export default function ProductPage({ product }: any) {
     name: product.sync_product.name,
     variant_id: selectedVariant.variant_id,
     external_variant_id: selectedVariant.external_id,
-    // product_template_id: selectedVariant.sync_product_id,
     quantity: quantity,
     price: selectedVariant.retail_price,
     url: `/products/${product.sync_product.external_id}`,
