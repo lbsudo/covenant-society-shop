@@ -7,7 +7,7 @@ export default async function Page() {
   const AllProducts = await GET();
 
   const ProductData = AllProducts.filter((product: Product) => {
-    return product.sync_variants.some((variant) => variant.main_category_id === 6 || variant.main_category_id === 26);
+    return product.sync_variants.some((variant) => variant.main_category_id === 108);
   });
 
   return (

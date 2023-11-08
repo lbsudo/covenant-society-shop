@@ -17,6 +17,10 @@ export const siteConfig = {
       href: "/category/mens-t-shirts",
     },
     {
+      label: "Tops",
+      href: "/category/mens-tops",
+    },
+    {
       label: "Sweatshirts",
       href: "/category/mens-sweatshirts",
     },
