@@ -5,8 +5,6 @@ import { NextResponse, NextRequest } from "next/server";
 
 
 export const POST = async (request: NextRequest) => {
-  // const API_KEY = process.env.NEXT_PUBLIC_PRINTFUL_API_KEY;
-
 
   try {
     // const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -149,7 +147,7 @@ export const POST = async (request: NextRequest) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.PRINTFUL_API_KEY}`,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_PRINTFUL_API_KEY}`,
         },
         body: JSON.stringify(printfulOrderData),
       });
