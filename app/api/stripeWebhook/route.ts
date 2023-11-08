@@ -19,7 +19,7 @@ export const POST = async (request: NextRequest) => {
       const customer = session.customer_details;
 
       const printfulOrderData = {
-        external_id: session.id,
+        external_id: session.created,
         shipping: "STANDARD",
         recipient: {
           name: customer.address.name,
