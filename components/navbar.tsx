@@ -26,8 +26,8 @@ import {
 
 import { Logo } from "@/components/icons";
 import NavAvatar from "./user/NavAvatar";
-import { getServerSession } from "next-auth";
-import { options } from "@/app/api/auth/[...nextauth]/options";
+// import { getServerSession } from "next-auth";
+// import { options } from "@/app/api/auth/[...nextauth]/options";
 import ShoppingCart from "./cart/ShoppingCart";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@nextui-org/react";
 
@@ -102,9 +102,9 @@ export const Navbar = () => {
     <NextUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="py-6 basis-1/5 sm:basis-full hidden lg:flex gap-1 justify-start ml-2 capitalize" justify="start">
         {renderDropdownItem("Mens", siteConfig.mensItems)}
-        {renderDropdownItem("Womens", siteConfig.womensItems)}
-        {renderDropdownItem("Collections", siteConfig.collectionItems)}
-        {renderDropdownItem("Collaborations", siteConfig.collabItems)}
+        {/* {renderDropdownItem("Womens", siteConfig.womensItems)} */}
+        {/* {renderDropdownItem("Collections", siteConfig.collectionItems)} */}
+        {/* {renderDropdownItem("Collaborations", siteConfig.collabItems)} */}
       </NavbarContent>
 
       <NavbarBrand as="li" className="gap-3 max-w-fit">

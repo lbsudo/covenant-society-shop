@@ -22,40 +22,19 @@ export async function GET() {
   const data = await res.json();
   const products: Product[] = await data.result;
 
-  const batchSize = 10; // Number of products to fetch in each batch
-  const productPromises = [];
-  for (let i = 0; i < products.length; i += batchSize) {
-    const batch = products.slice(i, i + batchSize);
-    const batchPromises = batch.map((product: Product) =>
-      fetch(`${API_URL}/store/products/${product.id}`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${API_KEY}`,
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-      })
-    );
-    productPromises.push(...batchPromises);
-  }
+  const productPromises = products.map((product: Product) =>
+    fetch(`${API_URL}/store/products/${product.id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${API_KEY}`,
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+  );
   const productResponses = await Promise.all(productPromises);
   const productData = await Promise.all(productResponses.map((response) => response.json()));
   const productDetails = productData.map((response) => response.result);
-
-
-  // const productPromises = products.map((product: Product) =>
-  //   fetch(`${API_URL}/store/products/${product.id}`, {
-  //     method: "GET",
-  //     headers: {
-  //       Authorization: `Bearer ${API_KEY}`,
-  //       "Content-Type": "application/json",
-  //       "Access-Control-Allow-Origin": "*",
-  //     },
-  //   })
-  // );
-  // const productResponses = await Promise.all(productPromises);
-  // const productData = await Promise.all(productResponses.map((response) => response.json()));
-  // const productDetails = productData.map((response) => response.result);
 
   return productDetails;
 }

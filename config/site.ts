@@ -45,53 +45,53 @@ export const siteConfig = {
       href: "/category/mens-footwear",
     },
   ],
-  womensItems: [
-    {
-      label: "New Arrivals",
-      href: "/category/womens-new-arrivals",
-    },
-    {
-      label: "All",
-      href: "/category/womens-all",
-    },
-    {
-      label: "Tops",
-      href: "/category/womens-tops",
-    },
-    {
-      label: "Sweatshirts",
-      href: "/category/womens-sweatshirts",
-    },
-    {
-      label: "Bottoms",
-      href: "/category/womens-bottoms",
-    },
-    {
-      label: "Accessories",
-      href: "/category/womens-accessories",
-    },
-  ],
-  collectionItems: [
-    {
-      label: "Classic",
-      href: "/category/classic",
-    },
-    {
-      label: "Collegiate",
-      href: "/category/Collegiate",
-    },
-    {
-      label: "OG",
-      href: "/category/OG",
-    },
+  // womensItems: [
+  //   {
+  //     label: "New Arrivals",
+  //     href: "/category/womens-new-arrivals",
+  //   },
+  //   {
+  //     label: "All",
+  //     href: "/category/womens-all",
+  //   },
+  //   {
+  //     label: "Tops",
+  //     href: "/category/womens-tops",
+  //   },
+  //   {
+  //     label: "Sweatshirts",
+  //     href: "/category/womens-sweatshirts",
+  //   },
+  //   {
+  //     label: "Bottoms",
+  //     href: "/category/womens-bottoms",
+  //   },
+  //   {
+  //     label: "Accessories",
+  //     href: "/category/womens-accessories",
+  //   },
+  // ],
+  // collectionItems: [
+  //   {
+  //     label: "Classic",
+  //     href: "/category/classic",
+  //   },
+  //   {
+  //     label: "Collegiate",
+  //     href: "/category/Collegiate",
+  //   },
+  //   {
+  //     label: "OG",
+  //     href: "/category/OG",
+  //   },
 
-  ],
-  collabItems: [
-    {
-      label: "Coming Soon",
-      href: "/category/coming-soon",
-    },
-  ],
+  // ],
+  // collabItems: [
+  //   {
+  //     label: "Coming Soon",
+  //     href: "/category/coming-soon",
+  //   },
+  // ],
   navMenuItems: [
     {
       label: "Profile",
