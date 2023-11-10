@@ -1,4 +1,4 @@
-import GET from "../../../api/allProducts/route";
+import { GET } from "../../../api/allProducts/route";
 import { Product } from "@/types/Product";
 import ProductGrid from "@/components/product/ProductGrid";
 
@@ -13,11 +13,9 @@ export default async function Page() {
 
 
   return (
-    <>
-      <div>
-        <h1 className='flex justify-center text-3xl pt-3 mb-6 font-bold '>Mens All</h1>
-        <ProductGrid products={ProductData} />
-      </div>
-    </>
+    <div>
+      <h1 className='flex justify-center text-3xl pt-3 mb-6 font-bold '>Mens Sweatshirts</h1>
+      <ProductGrid products={ProductData} />
+    </div>
   );
 }

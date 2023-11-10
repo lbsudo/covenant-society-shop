@@ -1,4 +1,4 @@
-import GET from "../../../api/allProducts/route";
+import { GET } from "../../../api/allProducts/route";
 import { Product } from "@/types/Product";
 import ProductGrid from "@/components/product/ProductGrid";
 
