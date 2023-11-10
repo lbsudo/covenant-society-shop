@@ -15,10 +15,8 @@ export default function ShoppingCart() {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const { productData } = useSelector((state: StateProps) => state?.shopping);
-  const { orderData } = useSelector((state: StateProps) => state?.shopping);
 
 
-  console.log(orderData)
 
   const openCart = () => {
     setIsOpen(true);

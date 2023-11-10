@@ -4,10 +4,10 @@ export const siteConfig = {
   name: "Next.js + NextUI",
   description: "Make beautiful websites regardless of your design experience.",
   mensItems: [
-    {
-      label: "New Arrivals",
-      href: "/category/mens-new-arrivals",
-    },
+    // {
+    //   label: "New Arrivals",
+    //   href: "/category/mens-new-arrivals",
+    // },
     {
       label: "All",
       href: "/category/mens-all",
@@ -24,26 +24,26 @@ export const siteConfig = {
       label: "Sweatshirts",
       href: "/category/mens-sweatshirts",
     },
-    {
-      label: "Outerwear",
-      href: "/category/mens-outerwear",
-    },
+    // {
+    //   label: "Outerwear",
+    //   href: "/category/mens-outerwear",
+    // },
     {
       label: "Bottoms",
       href: "/category/mens-bottoms",
     },
-    {
-      label: "Headwear",
-      href: "/category/mens-headwear",
-    },
-    {
-      label: "Accessories",
-      href: "/category/mens-accessories",
-    },
-    {
-      label: "Footwear",
-      href: "/category/mens-footwear",
-    },
+    // {
+    //   label: "Headwear",
+    //   href: "/category/mens-headwear",
+    // },
+    // {
+    //   label: "Accessories",
+    //   href: "/category/mens-accessories",
+    // },
+    // {
+    //   label: "Footwear",
+    //   href: "/category/mens-footwear",
+    // },
   ],
   // womensItems: [
   //   {
