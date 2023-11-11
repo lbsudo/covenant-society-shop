@@ -6,9 +6,16 @@ export default async function Page() {
 
   const AllProducts = await GET();
 
+
   const ProductData = AllProducts.filter((product: Product) => {
-    return product.sync_variants.some((variant) => variant.main_category_id === 108);
+    return product.sync_variants.find((variant) => variant.main_category_id === 108) !== undefined;
   });
+
+
+
+  // const ProductData = AllProducts.filter((product: Product) => {
+  //   return product.sync_variants.some((variant) => variant.main_category_id === 108);
+  // });
 
   return (
     <div>
