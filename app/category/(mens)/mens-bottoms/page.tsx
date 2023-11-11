@@ -1,18 +1,14 @@
-import GET from "../../../api/allProducts/route";
+import GET from "../../../api/getCategory/route";
 import { Product } from "@/types/Product";
 import ProductGrid from "@/components/product/ProductGrid";
 
 export default async function Page() {
 
-  const AllProducts = await GET();
+  const categories = [
+    98
+  ]
 
-  const ProductData = AllProducts.filter((product: Product) => {
-    return product.sync_variants.find((variant) => variant.main_category_id === 98) !== undefined;
-  });
-
-  // const ProductData = AllProducts.filter((product: Product) => {
-  //   return product.sync_variants.some((variant) => variant.main_category_id === 98);
-  // });
+  const ProductData = await GET(categories);
 
   return (
     <>
