@@ -1,5 +1,5 @@
 import React from 'react'
-import { GET } from "./api/allProducts/route";
+import GET from "./api/allProducts/route";
 import ProductGrid from "@/components/product/ProductGrid";
 import Hero from '../components/home/Hero'
 
