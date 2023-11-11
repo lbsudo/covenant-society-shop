@@ -25,7 +25,7 @@ export default async function ProdPage({ params }: pageProps) {
     }
 
     const data = await res.json();
-    const product: Product = data.result;
+    const product: Product = await data.result;
     return product;
   };
 
