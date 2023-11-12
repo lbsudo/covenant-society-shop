@@ -6,8 +6,7 @@ export default async function Page() {
 
 
   const categories = [
-    28,
-    29
+    108,
   ]
 
   const ProductData = await GET(categories);

@@ -5,8 +5,8 @@ import ProductGrid from "@/components/product/ProductGrid";
 export default async function Page() {
 
   const categories = [
-    28,
-    29
+    6,
+    26,
   ]
 
   const ProductData = await GET(categories);
