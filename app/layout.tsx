@@ -4,7 +4,7 @@ import { siteConfig } from "@/config/site";
 import { GeistSans, GeistMono } from "geist/font";
 import { Providers } from "./providers";
 import { Navbar } from "@/components/navbar";
-import { Link } from "@nextui-org/link";
+// import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 import Footer from "@/components/Footer";
 import { Viewport } from "next";

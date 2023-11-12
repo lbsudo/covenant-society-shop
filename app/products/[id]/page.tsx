@@ -1,6 +1,8 @@
 import React from 'react'
 import ProductPage from "../../../components/product/ProductPage";
-import GET from '../../api/allProducts/route'
+// import GET from '../../api/allProducts/route'
+import getProducts from '@/lib/getProducts';
+import getProduct from '@/lib/getProduct';
 import { Product } from "@/types/Product";
 
 interface pageProps {
@@ -13,6 +15,7 @@ export default async function ProdPage({ params }: pageProps) {
     const API_KEY = process.env.NEXT_PUBLIC_PRINTFUL_API_KEY;
     const API_URL = 'https://api.printful.com';
     const url = `${API_URL}/store/products/${params.id}`;
+
     const res = await fetch(url, {
       method: 'GET',
       headers: {
@@ -31,6 +34,7 @@ export default async function ProdPage({ params }: pageProps) {
   };
 
   const product: Product = await fetchProduct();
+  console.log(product)
 
   return (
     <>
@@ -55,7 +59,7 @@ export async function generateStaticParams() {
   // });
   // const data = await res.json();
   // const products: Product[] = data.result;
-  const products = await GET();
+  const products = await getProducts();
 
   // Return an array of params, one for each product
   // return products.map(product => ({ id: product.id.toString() }));

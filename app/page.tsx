@@ -1,12 +1,13 @@
 import React from 'react'
-import GET from "./api/allProducts/route";
+// import GET from "./api/allProducts/route";
+import getProducts from '@/lib/getProducts';
 import ProductGrid from "@/components/product/ProductGrid";
 import Hero from '../components/home/Hero'
 
 
 
 export default async function Home() {
-  const productData = await GET();
+  const productData = await getProducts();
 
   return (
     <>
