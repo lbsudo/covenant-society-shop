@@ -3,6 +3,7 @@ import ProductPage from "../../../components/product/ProductPage";
 // import GET from '../../api/allProducts/route'
 import getProducts from '@/lib/getProducts';
 import getProduct from '@/lib/getProduct';
+import getIds from '@/lib/getId';
 import { Product } from "@/types/Product";
 
 interface pageProps {
@@ -59,11 +60,12 @@ export async function generateStaticParams() {
   // });
   // const data = await res.json();
   // const products: Product[] = data.result;
-  const products = await getProducts();
+  // const products = await getProducts();
 
+  return await getIds();
   // Return an array of params, one for each product
   // return products.map(product => ({ id: product.id.toString() }));
-  return products.map(product => ({ id: product.sync_product.id.toString() }));
+  // return products.map(product => ({ id: product.id.toString() }));
 }
 
 
