@@ -1,4 +1,5 @@
-import GET from "../../../api/getCategory/route";
+// import GET from "../../../api/getCategory/route";
+import getCategory from "@/lib/getCategory";
 import { Product } from "@/types/Product";
 import ProductGrid from "@/components/product/ProductGrid";
 
@@ -9,7 +10,7 @@ export default async function Page() {
     26,
   ]
 
-  const ProductData = await GET(categories);
+  const ProductData = await getCategory(categories);
 
   return (
     <div>

@@ -9,7 +9,7 @@ interface pageProps {
   params: { id: string }
 }
 
-export default async function ProdPage({ params }: pageProps) {
+export default async function Page({ params }: pageProps) {
 
   const fetchProduct = async () => {
     const API_KEY = process.env.NEXT_PUBLIC_PRINTFUL_API_KEY;

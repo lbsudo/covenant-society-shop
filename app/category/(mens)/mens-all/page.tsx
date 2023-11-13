@@ -1,8 +1,9 @@
-import GET from "../../../api/allProducts/route";
+// import GET from "../../../api/allProducts/route";
+import getProducts from "@/lib/getProducts";
 import ProductGrid from "@/components/product/ProductGrid";
 
 export default async function Page() {
-  const ProductData = await GET();
+  const ProductData = await getProducts();
 
   return (
     <div>
