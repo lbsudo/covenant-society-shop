@@ -8,6 +8,7 @@ import { Navbar } from "@/components/navbar";
 import clsx from "clsx";
 import Footer from "@/components/Footer";
 import { Viewport } from "next";
+import ShoppingCart from "@/components/cart/ShoppingCart";
 
 export const metadata: Metadata = {
   title: {

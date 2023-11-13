@@ -1,14 +1,15 @@
 import React from 'react'
-// import GET from "./api/allProducts/route";
 import getProducts from '@/lib/getProducts';
+import productShuffle from '@/utils/productShuffle';
 import ProductGrid from "@/components/product/ProductGrid";
 import Hero from '../components/home/Hero'
 
 
 
 export default async function Home() {
-  const productData = await getProducts();
+  const products = await getProducts();
 
+  const productData = await productShuffle(products);
   return (
     <>
       <section >

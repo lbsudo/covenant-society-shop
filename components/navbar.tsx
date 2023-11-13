@@ -99,7 +99,7 @@ export const Navbar = () => {
   };
 
   return (
-    <NextUINavbar maxWidth="xl" position="sticky">
+    <NextUINavbar className="fixed" maxWidth="xl" position="sticky">
       <NavbarContent className="py-6 basis-1/5 sm:basis-full hidden lg:flex gap-1 justify-start ml-2 capitalize" justify="start">
         {renderDropdownItem("Mens", siteConfig.mensItems)}
         {/* {renderDropdownItem("Womens", siteConfig.womensItems)} */}

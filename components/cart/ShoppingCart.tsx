@@ -86,7 +86,7 @@ export default function ShoppingCart() {
         <BsBagFill className="text-current z-2" />
       </button>
       {/* Cart Open */}
-      <div>
+      <div >
         {isOpen ? (
           <div className="fixed top-0 right-0 h-screen w-1/3 bg-background border-l-1 border-foreground/50 z-50">
             <div className="h-auto px-4 py-4 text-small font-bold flex flex-row items-center justify-between">
