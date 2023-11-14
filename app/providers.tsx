@@ -6,7 +6,6 @@ import { NextUIProvider } from "@nextui-org/system";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
 import { dark } from '@clerk/themes'
-import AuthProvider from "@/context/AuthProvider";
 import { Provider } from "react-redux";
 import { store } from '../redux/store'
 

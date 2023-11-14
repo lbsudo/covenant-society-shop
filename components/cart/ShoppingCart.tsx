@@ -9,7 +9,6 @@ import { Product, StateProps } from '@/types/Product';
 import CartItem from './CartItem';
 import FormattedPrice from './FormattedPrice';
 import { loadStripe } from '@stripe/stripe-js';
-import { useSession } from 'next-auth/react';
 
 export default function ShoppingCart() {
   const dispatch = useDispatch();
@@ -83,7 +82,7 @@ export default function ShoppingCart() {
         <span className="bg-red-500 flex justify-center items-center text-white text-xs rounded-full p-2 h-3 w-3 z-30  absolute -top-1 -right-2 ">
           {totalQuantity}
         </span>
-        <BsBagFill className="text-current z-2" />
+        <BsBagFill className="text-current text-2xl z-2" />
       </button>
       {/* Cart Open */}
       <div >
