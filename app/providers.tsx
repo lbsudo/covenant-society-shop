@@ -1,9 +1,11 @@
 "use client";
 
 import * as React from "react";
+import { ClerkProvider } from '@clerk/nextjs'
 import { NextUIProvider } from "@nextui-org/system";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
+import { dark } from '@clerk/themes'
 import AuthProvider from "@/context/AuthProvider";
 import { Provider } from "react-redux";
 import { store } from '../redux/store'
@@ -15,12 +17,15 @@ export interface ProvidersProps {
 
 export function Providers({ children, themeProps }: ProvidersProps) {
   return (
-    <AuthProvider>
+    <ClerkProvider appearance={{
+      baseTheme: dark,
+      signIn: { baseTheme: dark },
+    }}>
       <Provider store={store}>
         <NextUIProvider>
           <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
         </NextUIProvider>
       </Provider>
-    </AuthProvider>
+    </ClerkProvider>
   );
 }

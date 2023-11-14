@@ -29,7 +29,8 @@ import NavAvatar from "./user/NavAvatar";
 // import { getServerSession } from "next-auth";
 // import { options } from "@/app/api/auth/[...nextauth]/options";
 import ShoppingCart from "./cart/ShoppingCart";
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@nextui-org/react";
+import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button, User } from "@nextui-org/react";
+import { UserButton } from "@clerk/nextjs";
 
 export const Navbar = () => {
   const searchInput = (
@@ -122,6 +123,7 @@ export const Navbar = () => {
         <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
         <ShoppingCart />
         <NavAvatar />
+        {/* <UserButton /> */}
       </NavbarContent>
 
       {/* Mobile Menu  */}

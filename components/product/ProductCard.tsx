@@ -16,7 +16,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <Link href={`/products/${product.sync_product.id}`}
       >
         <Card shadow="sm" key={product.sync_product.id} isPressable onPress={() => console.log("item pressed")}>
-          <CardBody className="overflow-visible p-0 bg-gray-200">
+          <CardBody className="overflow-visible p-0 bg-[#999999]">
             <Image
               removeWrapper
               shadow="sm"
@@ -28,7 +28,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               fetchPriority='auto'
             />
           </CardBody>
-          <CardFooter className="text-md flec flex-col justify-between">
+          <CardFooter className="text-sm flex flex-col justify-between">
             <b>{product.sync_product.name}</b>
             <p className="text-current">${selectedVariant.retail_price} {selectedVariant.currency}</p>
           </CardFooter>
