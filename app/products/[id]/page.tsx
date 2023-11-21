@@ -1,9 +1,8 @@
 import React from 'react'
-import ProductPage from "../../../components/product/ProductPage";
-// import GET from '../../api/allProducts/route'
-import getProducts from '@/lib/getProducts';
-import getProduct from '@/lib/getProduct';
-import getIds from '@/lib/getId';
+import ProductPage from "@/components/product/ProductPage";
+import getProducts from '@/actions/getProducts';
+import getProduct from '@/actions/getProduct';
+import getIds from '@/actions/getId';
 import { Product } from "@/types/Product";
 
 interface pageProps {

@@ -1,6 +1,4 @@
-// import GET from "../../../api/getCategory/route";
-import getCategory from "@/lib/getCategory";
-import { Product } from "@/types/Product";
+import getCategory from "@/actions/getCategory";
 import ProductGrid from "@/components/product/ProductGrid";
 
 export default async function Page() {

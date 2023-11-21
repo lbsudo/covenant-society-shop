@@ -1,5 +1,4 @@
-// import GET from "../../../api/allProducts/route";
-import getProducts from "@/lib/getProducts";
+import getProducts from "@/actions/getProducts";
 import ProductGrid from "@/components/product/ProductGrid";
 
 export default async function Page() {

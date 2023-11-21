@@ -1,5 +1,5 @@
 import React from 'react'
-import getProducts from '@/lib/getProducts';
+import getProducts from '@/actions/getProducts';
 import productShuffle from '@/utils/productShuffle';
 import ProductGrid from "@/components/product/ProductGrid";
 import Hero from '../components/home/Hero'

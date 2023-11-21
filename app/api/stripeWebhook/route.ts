@@ -1,6 +1,5 @@
 import { Product } from "@/types/Product";
 import { NextResponse, NextRequest } from "next/server";
-// import Stripe from "stripe";
 
 
 export const POST = async (request: NextRequest) => {
