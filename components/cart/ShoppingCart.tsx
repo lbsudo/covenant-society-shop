@@ -87,7 +87,7 @@ export default function ShoppingCart() {
       {/* Cart Open */}
       <div >
         {isOpen ? (
-          <div className="fixed top-0 lg:right-0 left-0 h-screen lg:w-1/3 w-full  bg-background border-l-1 border-foreground/50 z-50">
+          <div className="fixed top-0 lg:left-0 left-0 h-screen lg:w-1/3 w-full  bg-background border-l-1 border-foreground/50 z-50">
             <div className="h-auto px-4 py-4 text-small font-bold flex flex-row items-center justify-between">
               <h2>BAG</h2>
               <button onClick={closeCart} className='flex flex-row justify-center items-center'>

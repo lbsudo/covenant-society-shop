@@ -4,7 +4,7 @@ import Link from 'next/link'
 export default function Footer() {
   return (
     <>
-      <div className='py-6'>
+      <div className='flex items-start justify-between py-6 px-4'>
         <ul className='flex justify-center '>
           <Link href={'/info/contact'}>
             <li className='px-3'>CONTACT</li>
@@ -26,6 +26,7 @@ export default function Footer() {
           {/*   <li className='px-3'>PRIVACY POLICY</li> */}
           {/* </Link> */}
         </ul>
+        <h2>©2024 — COVENANT SOCIETY</h2>
       </div>
     </>
   )
