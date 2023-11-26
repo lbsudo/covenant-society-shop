@@ -30,8 +30,8 @@ export default function ProductPage({ product }: any) {
 
   return (
     <>
-      <div className='relativ w-full flex flex-row px-16 pt-6'>
-        <div className='h-full w-1/2'>
+      <div className='relative w-full flex lg:flex-row flex-col justify-center items-start pt-6'>
+        <div className='h-full w-full lg:w-1/2'>
           <Image
             src={product.sync_product.thumbnail_url}
             alt={product.sync_product.name}
@@ -42,7 +42,7 @@ export default function ProductPage({ product }: any) {
             priority
           />
         </div>
-        <div className='w-1/2 text-left pl-24 '>
+        <div className='lg:w-1/2 px-4 flex flex-col justify-center items-start text-left'>
           <h1 className="text-2xl lg:text-3xl font-semibold">{product.sync_product.name}</h1>
           <p className="text-xl font-medium mt-4 ">
             $ {selectedVariant.retail_price} {selectedVariant.currency}
@@ -54,7 +54,7 @@ export default function ProductPage({ product }: any) {
                 {product.sync_variants.map((variant: SyncVariant) => (
                   <button
                     key={variant.external_id}
-                    className={`font-semibold text-lg border m-0 px-5 py-1 rounded-xl ${variant.external_id === selectedVariant.external_id ? 'bg-primary text-white' : 'border-gray-300'
+                    className={`font-semibold lg:text-lg border m-0 lg:px-5 px-5 py-1 rounded-xl ${variant.external_id === selectedVariant.external_id ? 'bg-primary text-white' : 'border-gray-300'
                       }`}
                     onClick={() => handleVariantChange(variant)}
                   >

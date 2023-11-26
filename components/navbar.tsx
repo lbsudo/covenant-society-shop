@@ -31,6 +31,7 @@ import NavAvatar from "./user/NavAvatar";
 import ShoppingCart from "./cart/ShoppingCart";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button, User } from "@nextui-org/react";
 import { UserButton } from "@clerk/nextjs";
+import MobileNav from "./MobileNav";
 
 export const Navbar = () => {
   const searchInput = (
@@ -103,9 +104,9 @@ export const Navbar = () => {
     <NextUINavbar className="fixed" maxWidth="xl" position="sticky">
       <NavbarContent className="py-6 basis-1/5 sm:basis-full hidden lg:flex gap-1 justify-start ml-2 capitalize" justify="start">
         {renderDropdownItem("Mens", siteConfig.mensItems)}
-        {/* {renderDropdownItem("Womens", siteConfig.womensItems)} */}
-        {/* {renderDropdownItem("Collections", siteConfig.collectionItems)} */}
-        {/* {renderDropdownItem("Collaborations", siteConfig.collabItems)} */}
+        {renderDropdownItem("Womens", siteConfig.womensItems)}
+        {renderDropdownItem("Collections", siteConfig.collectionItems)}
+        {renderDropdownItem("Collaborations", siteConfig.partnershipItems)}
       </NavbarContent>
 
       <NavbarBrand as="li" className="gap-3 max-w-fit">
@@ -127,33 +128,18 @@ export const Navbar = () => {
       </NavbarContent>
 
       {/* Mobile Menu  */}
-      <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
+      <NavbarContent className="sm:hidden basis-1" justify="end">
         <Link isExternal href={siteConfig.links.github} aria-label="Github">
         </Link>
         <ThemeSwitch />
+        <ShoppingCart />
         <NavbarMenuToggle />
       </NavbarContent>
 
       <NavbarMenu>
-        {searchInput}
-        <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
-                }
-                href="#"
-                size="lg"
-              >
-                {item.label}
-              </Link>
-            </NavbarMenuItem>
-          ))}
+        {/* {searchInput} */}
+        <div className="mx-4 mt-2 w-full flex flex-col gap-2">
+          <MobileNav />
         </div>
       </NavbarMenu>
     </NextUINavbar>

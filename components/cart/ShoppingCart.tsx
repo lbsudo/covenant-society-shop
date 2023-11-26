@@ -79,15 +79,15 @@ export default function ShoppingCart() {
   return (
     <div className="relative inline-block">
       <button onClick={openCart} className="relative flex justify-center items-center">
-        <span className="bg-red-500 flex justify-center items-center text-white text-xs rounded-full p-2 h-3 w-3 z-30  absolute -top-1 -right-2 ">
+        <span className="bg-red-500 flex justify-center items-center text-white text-xs rounded-full p-2 lg:h-3 lg:w-3 w-2 h-2 z-30  absolute -top-1 -right-2 ">
           {totalQuantity}
         </span>
-        <BsBagFill className="text-current text-2xl z-2" />
+        <BsBagFill className="text-current lg:text-xl text-lg z-2" />
       </button>
       {/* Cart Open */}
       <div >
         {isOpen ? (
-          <div className="fixed top-0 right-0 h-screen w-1/3 bg-background border-l-1 border-foreground/50 z-50">
+          <div className="fixed top-0 lg:right-0 left-0 h-screen lg:w-1/3 w-full  bg-background border-l-1 border-foreground/50 z-50">
             <div className="h-auto px-4 py-4 text-small font-bold flex flex-row items-center justify-between">
               <h2>BAG</h2>
               <button onClick={closeCart} className='flex flex-row justify-center items-center'>

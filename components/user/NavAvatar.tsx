@@ -6,7 +6,6 @@ import {
   SignInButton,
   UserButton,
 } from "@clerk/nextjs";
-import { Avatar } from "@nextui-org/react";
 import {
   NavbarItem,
 } from "@nextui-org/navbar";
@@ -23,11 +22,7 @@ export default function NavAvatar() {
       </SignedIn>
       <SignedOut>
         {/* Signed out users get sign in button */}
-        <SignInButton>
-          <button className='flex items-center justify-center'>
-            <Avatar showFallback src='https://images.unsplash.com/broken' className="w-9 h-9 text-tiny" />
-          </button>
-        </SignInButton>
+        <SignInButton />
       </SignedOut>
     </NavbarItem>
   )
