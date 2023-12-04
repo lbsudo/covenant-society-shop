@@ -1,4 +1,3 @@
-import getCategory from "@/actions/getCategory";
 import categoryFilter from "@/utils/categoryFilter";
 import getProducts from "@/actions/getProducts";
 import ProductGrid from "@/components/product/ProductGrid";
@@ -9,11 +8,6 @@ function PageFallback() {
 }
 
 export default async function Page() {
-
-  // const categories = [
-  //   6,
-  //   26,
-  // ]
 
   const categories = [
     6,
