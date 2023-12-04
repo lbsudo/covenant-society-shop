@@ -1,5 +1,7 @@
-import getCategory from "@/actions/getCategory";
+// import getCategory from "@/actions/getCategory";
+import getProducts from "@/actions/getProducts";
 import ProductGrid from "@/components/product/ProductGrid";
+import categoryFilter from "@/utils/categoryFilter";
 
 export default async function Page() {
 
@@ -27,6 +29,7 @@ export async function generateStaticParams() {
   const categories = [
     108,
   ]
-  const ProductData = await getCategory(categories);
-  return ProductData;
+  const ProductData = await getProducts();
+  const Products = await categoryFilter(ProductData, categories)
+  return Products;
 }
