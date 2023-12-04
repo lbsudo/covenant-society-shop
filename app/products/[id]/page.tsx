@@ -3,9 +3,14 @@ import { Product } from '@/types/Product';
 import ProductPage from "@/components/product/ProductPage";
 import getIds from '@/actions/getId';
 import getProduct from '@/actions/getProduct';
+import { Suspense } from 'react'
 
 interface pageProps {
   params: { id: string }
+}
+
+function PageFallBack() {
+  return <></>
 }
 
 export default async function Page({ params }: pageProps) {
@@ -38,7 +43,9 @@ export default async function Page({ params }: pageProps) {
 
   return (
     <>
-      <ProductPage product={product} />
+      <Suspense fallback={<PageFallBack />}>
+        <ProductPage product={product} />
+      </Suspense>
     </>
   )
 }
