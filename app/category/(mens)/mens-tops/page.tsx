@@ -4,11 +4,11 @@ import ProductGrid from "@/components/product/ProductGrid";
 export default async function Page() {
 
 
-  const categories = [
-    108,
-  ]
+  // const categories = [
+  //   108,
+  // ]
 
-  const ProductData = await getCategory(categories);
+  const ProductData = await generateStaticParams();
 
   // const ProductData = AllProducts.filter((product: Product) => {
   //   return product.sync_variants.some((variant) => variant.main_category_id === 108);
@@ -27,6 +27,6 @@ export async function generateStaticParams() {
   const categories = [
     108,
   ]
-
-  return categories;
+  const ProductData = await getCategory(categories);
+  return ProductData;
 }

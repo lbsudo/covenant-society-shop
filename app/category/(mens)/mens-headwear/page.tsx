@@ -3,12 +3,12 @@ import ProductGrid from "@/components/product/ProductGrid";
 
 export default async function Page() {
 
-  const categories = [
-    15,
-    45,
-  ]
+  // const categories = [
+  //   15,
+  //   45,
+  // ]
 
-  const ProductData = await getCategory(categories);
+  const ProductData = await generateStaticParams();
 
 
   return (

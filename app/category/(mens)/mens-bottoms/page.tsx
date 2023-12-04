@@ -3,11 +3,11 @@ import ProductGrid from "@/components/product/ProductGrid";
 
 export default async function Page() {
 
-  const categories = [
-    98
-  ]
+  // const categories = [
+  //   98
+  // ]
 
-  const ProductData = await getCategory(categories);
+  const ProductData = await generateStaticParams();
 
   return (
     <>
@@ -23,6 +23,6 @@ export async function generateStaticParams() {
   const categories = [
     98,
   ]
-
-  return categories;
+  const ProductData = await getCategory(categories);
+  return ProductData;
 }
