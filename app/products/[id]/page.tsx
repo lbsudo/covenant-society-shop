@@ -44,9 +44,9 @@ export default async function Page({ params }: pageProps) {
 }
 
 
-export async function generateStaticParams() {
-  return await getIds();
-}
+// export async function generateStaticParams() {
+//   return await getIds();
+// }
 
 
 
