@@ -17,3 +17,14 @@ export default async function Page() {
     </div>
   );
 }
+
+export async function generateStaticParams() {
+  const categories = [
+    6,
+    26,
+  ]
+
+  const ProductData = await getCategory(categories);
+
+  return ProductData;
+}
