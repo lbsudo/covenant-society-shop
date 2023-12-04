@@ -49,7 +49,7 @@ export default async function getCategory(mainCategoryIds: Number[]) {
 
   // Filter productDetails based on main_category_id
   const filteredProductDetails = productDetails.filter((product: Product) => {
-    return product.sync_variants.filter((variant) => mainCategoryIds.includes(variant.main_category_id));
+    return product.sync_variants.some((variant) => mainCategoryIds.includes(variant.main_category_id));
   });
 
   return filteredProductDetails;
