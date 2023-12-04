@@ -28,7 +28,5 @@ export async function generateStaticParams() {
     108,
   ]
 
-  const ProductData = await getCategory(categories);
-
-  return ProductData;
+  return categories;
 }
