@@ -15,26 +15,31 @@ export default async function Page() {
   //   26,
   // ]
 
-  const ProductData = await generateStaticParams();
-
-  return (
-    <>
-      <Suspense fallback={<PageFallback />}>
-        <div>
-          <h1 className='flex justify-center text-3xl pt-3 mb-6 font-bold '>Mens T-Shirts</h1>
-          <ProductGrid products={ProductData} />
-        </div>
-      </Suspense>
-    </>
-  );
-}
-
-export async function generateStaticParams() {
   const categories = [
     6,
     26,
   ]
   const ProductData = await getProducts();
   const Products = await categoryFilter(ProductData, categories)
-  return Products;
+
+  return (
+    <>
+      <Suspense fallback={<PageFallback />}>
+        <div>
+          <h1 className='flex justify-center text-3xl pt-3 mb-6 font-bold '>Mens T-Shirts</h1>
+          <ProductGrid products={Products} />
+        </div>
+      </Suspense>
+    </>
+  );
 }
+
+// export async function generateStaticParams() {
+//   const categories = [
+//     6,
+//     26,
+//   ]
+//   const ProductData = await getProducts();
+//   const Products = await categoryFilter(ProductData, categories)
+//   return Products;
+// }

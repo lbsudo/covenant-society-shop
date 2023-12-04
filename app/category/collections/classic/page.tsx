@@ -27,9 +27,9 @@ export default async function Page() {
   );
 }
 
-export async function generateStaticParams() {
-  const ProductData: Product[] = await getProducts();
+// export async function generateStaticParams() {
+//   const ProductData: Product[] = await getProducts();
 
-  const Products = ProductData.filter(product => product.sync_product.name.toLowerCase().includes('classic'));
-  return Products;
-}
+//   const Products = ProductData.filter(product => product.sync_product.name.toLowerCase().includes('classic'));
+//   return Products;
+// }

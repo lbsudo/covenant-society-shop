@@ -15,7 +15,12 @@ export default async function Page() {
   //   45,
   // ]
 
-  const ProductData = await generateStaticParams();
+  const categories = [
+    15,
+    45,
+  ]
+  const ProductData = await getProducts();
+  const Products = await categoryFilter(ProductData, categories)
 
 
   return (
@@ -23,19 +28,19 @@ export default async function Page() {
       <Suspense fallback={<PageFallback />}>
         <div>
           <h1 className='flex justify-center text-3xl pt-3 mb-6 font-bold '>Mens Sweatshirts</h1>
-          <ProductGrid products={ProductData} />
+          <ProductGrid products={Products} />
         </div>
       </Suspense>
     </>
   );
 }
 
-export async function generateStaticParams() {
-  const categories = [
-    15,
-    45,
-  ]
-  const ProductData = await getProducts();
-  const Products = await categoryFilter(ProductData, categories)
-  return Products;
-}
+// export async function generateStaticParams() {
+//   const categories = [
+//     15,
+//     45,
+//   ]
+//   const ProductData = await getProducts();
+//   const Products = await categoryFilter(ProductData, categories)
+//   return Products;
+// }

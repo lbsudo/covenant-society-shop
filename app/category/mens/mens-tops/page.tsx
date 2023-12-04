@@ -15,7 +15,11 @@ export default async function Page() {
   //   108,
   // ]
 
-  const ProductData = await generateStaticParams();
+  const categories = [
+    108,
+  ]
+  const ProductData = await getProducts();
+  const Products = await categoryFilter(ProductData, categories)
 
   // const ProductData = AllProducts.filter((product: Product) => {
   //   return product.sync_variants.some((variant) => variant.main_category_id === 108);
@@ -26,7 +30,7 @@ export default async function Page() {
       <Suspense fallback={<PageFallback />}>
         <div>
           <h1 className='flex justify-center text-3xl pt-3 mb-6 font-bold '>Mens Tops</h1>
-          <ProductGrid products={ProductData} />
+          <ProductGrid products={Products} />
         </div>
       </Suspense>
     </>
@@ -34,11 +38,11 @@ export default async function Page() {
 }
 
 
-export async function generateStaticParams() {
-  const categories = [
-    108,
-  ]
-  const ProductData = await getProducts();
-  const Products = await categoryFilter(ProductData, categories)
-  return Products;
-}
+// export async function generateStaticParams() {
+//   const categories = [
+//     108,
+//   ]
+//   const ProductData = await getProducts();
+//   const Products = await categoryFilter(ProductData, categories)
+//   return Products;
+// }
