@@ -5,5 +5,5 @@ export default async function categoryFilter(products: any, mainCategoryIds: num
     // return product.sync_variants.some((variant) => mainCategoryIds.includes(variant.main_category_id));
   });
 
-  return filteredProductDetails;
+  return await filteredProductDetails;
 }
