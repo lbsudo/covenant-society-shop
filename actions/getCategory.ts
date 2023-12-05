@@ -10,7 +10,7 @@ export default async function getCategory(mainCategoryIds: Number[]) {
   let allProducts: Product[] = [];
 
   do {
-    const url = `${API_URL}/store/products?limit=${limit}&offset=${offset}`;
+    const url = `${API_URL}/store/products${mainCategoryIds}?limit=${limit}&offset=${offset}`;
 
     const res = await fetch(url, {
       method: "GET",
@@ -48,11 +48,7 @@ export default async function getCategory(mainCategoryIds: Number[]) {
   const productData = await Promise.all(productResponses.map((response) => response.json()));
   const productDetails = productData.map((response) => response.result);
 
-  // Filter productDetails based on main_category_id
-  const filteredProductDetails = productDetails.filter((product: Product) => {
-    return product.sync_variants.some((variant) => mainCategoryIds.includes(variant.main_category_id));
-  });
 
-  return filteredProductDetails;
+
 }
 
