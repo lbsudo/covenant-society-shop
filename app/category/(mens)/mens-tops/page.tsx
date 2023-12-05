@@ -1,8 +1,6 @@
-// import getCategory from "@/actions/getCategory";
-import getProducts from "@/actions/getProducts";
+import getCategory from "@/actions/getCategory";
 import ProductGrid from "@/components/product/ProductGrid";
 import { Product } from "@/types/Product";
-import categoryFilter from "@/utils/categoryFilter";
 import { Suspense } from 'react'
 
 function PageFallback() {
@@ -10,17 +8,8 @@ function PageFallback() {
 }
 
 export default async function Page() {
-
-  const Products: Product[] = await generateStaticParams();
-
-  // const categories = [
-  //   108,
-  // ]
-  // const ProductData: Product[] = await getProducts();
-  // const Products: Product[] = ProductData.filter((product: Product) => {
-  //   return product.sync_variants.some((variant) => categories.includes(variant.main_category_id));
-  // });
-  // const Products: Product[] = await categoryFilter(ProductData, categories)
+  const categories = [108]
+  const Products: Product[] = await getCategory(categories)
 
   return (
     <>
@@ -35,15 +24,3 @@ export default async function Page() {
 }
 
 
-export async function generateStaticParams() {
-  const categories = [
-    108,
-  ]
-  const ProductData: Product[] = await getProducts();
-  const Products: Product[] = ProductData.filter((product: Product) => {
-    return product.sync_variants.some((variant) => categories.includes(variant.main_category_id));
-  });
-  // const ProductData = await getProducts();
-  // const Products = await categoryFilter(ProductData, categories)
-  return Products;
-}

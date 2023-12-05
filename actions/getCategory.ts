@@ -1,8 +1,7 @@
 "use server"
 import { Product } from "@/types/Product";
 
-
-export default async function getCategory(mainCategoryIds: Number[]) {
+export default async function getCategory(categories: Number[]) {
   const API_KEY = process.env.NEXT_PUBLIC_PRINTFUL_API_KEY;
   const API_URL = 'https://api.printful.com';
   const limit = 20;
@@ -10,11 +9,10 @@ export default async function getCategory(mainCategoryIds: Number[]) {
   let allProducts: Product[] = [];
 
   do {
-    const url = `${API_URL}/store/products${mainCategoryIds}?limit=${limit}&offset=${offset}`;
+    const url = `${API_URL}/store/products?category_id=${categories}&limit=${limit}&offset=${offset}`;
 
     const res = await fetch(url, {
       method: "GET",
-      next: { revalidate: 3500 },
       headers: {
         Authorization: `Bearer ${API_KEY}`,
         "Content-Type": "application/json",
@@ -48,7 +46,8 @@ export default async function getCategory(mainCategoryIds: Number[]) {
   const productData = await Promise.all(productResponses.map((response) => response.json()));
   const productDetails = productData.map((response) => response.result);
 
-
-
+  return productDetails;
 }
+
+
 
