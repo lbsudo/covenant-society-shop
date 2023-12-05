@@ -10,10 +10,11 @@ function PageFallback() {
 
 export default async function Page() {
 
-  const ProductData: Product[] = await getProducts();
+  // const ProductData: Product[] = await getProducts();
 
-  const Products: Product[] = ProductData.filter(product => product.sync_product.name.toLowerCase().includes('classic'));
+  // const Products: Product[] = ProductData.filter(product => product.sync_product.name.toLowerCase().includes('classic'));
 
+  const Products: Product[] = await generateStaticParams();
 
   return (
     <>
@@ -27,9 +28,9 @@ export default async function Page() {
   );
 }
 
-// export async function generateStaticParams() {
-//   const ProductData: Product[] = await getProducts();
+export async function generateStaticParams() {
+  const ProductData: Product[] = await getProducts();
 
-//   const Products = ProductData.filter(product => product.sync_product.name.toLowerCase().includes('classic'));
-//   return Products;
-// }
+  const Products = ProductData.filter(product => product.sync_product.name.toLowerCase().includes('classic'));
+  return Products;
+}

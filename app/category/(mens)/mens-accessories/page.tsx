@@ -10,14 +10,16 @@ function PageFallback() {
 
 export default async function Page() {
 
-  const categories = [
-    221,
-  ]
+  const Products: Product[] = await generateStaticParams();
 
-  const ProductData: Product[] = await getProducts();
-  const Products: Product[] = ProductData.filter((product: Product) => {
-    return product.sync_variants.some((variant) => categories.includes(variant.main_category_id));
-  });
+  // const categories = [
+  //   221,
+  // ]
+
+  // const ProductData: Product[] = await getProducts();
+  // const Products: Product[] = ProductData.filter((product: Product) => {
+  //   return product.sync_variants.some((variant) => categories.includes(variant.main_category_id));
+  // });
 
   // const Products: Product[] = await categoryFilter(ProductData, categories)
 
@@ -34,12 +36,14 @@ export default async function Page() {
   );
 }
 
-// export async function generateStaticParams() {
-//   const categories = [
-//     221,
-//   ]
+export async function generateStaticParams() {
+  const categories = [
+    221,
+  ]
 
-//   const ProductData = await getProducts();
-//   const Products = await categoryFilter(ProductData, categories)
-//   return Products;
-// }
+  const ProductData: Product[] = await getProducts();
+  const Products: Product[] = ProductData.filter((product: Product) => {
+    return product.sync_variants.some((variant) => categories.includes(variant.main_category_id));
+  });
+  return Products;
+}
