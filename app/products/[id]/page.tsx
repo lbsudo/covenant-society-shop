@@ -39,8 +39,6 @@ export default async function Page({ params }: pageProps) {
   // };
   const product: Product = await getProduct(prodId)
 
-  // const product: Product = await fetchProduct();
-
   return (
     <>
       <Suspense fallback={<PageFallBack />}>
