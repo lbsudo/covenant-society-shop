@@ -15,11 +15,10 @@ export default async function Page() {
     108,
   ]
   const ProductData: Product[] = await getProducts();
-  const Products: Product[] = await categoryFilter(ProductData, categories)
-
-  // const ProductData = AllProducts.filter((product: Product) => {
-  //   return product.sync_variants.some((variant) => variant.main_category_id === 108);
-  // });
+  const Products: Product[] = ProductData.filter((product: Product) => {
+    return product.sync_variants.some((variant) => categories.includes(variant.main_category_id));
+  });
+  // const Products: Product[] = await categoryFilter(ProductData, categories)
 
   return (
     <>
