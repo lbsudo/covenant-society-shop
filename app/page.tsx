@@ -4,6 +4,7 @@ import productShuffle from '@/utils/productShuffle';
 import ProductGrid from "@/components/product/ProductGrid";
 import Hero from '../components/home/Hero'
 import { Suspense } from 'react'
+import { Product } from '@/types/Product';
 
 function PageFallback() {
   return <></>
@@ -12,7 +13,7 @@ function PageFallback() {
 
 
 export default async function Home() {
-  const products = await getProducts();
+  const products: Product[] = await getProducts();
 
   const productData = await productShuffle(products);
   return (

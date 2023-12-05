@@ -45,7 +45,7 @@ export default async function getProducts() {
   );
   const productResponses = await Promise.all(productPromises);
   const productData = await Promise.all(productResponses.map((response) => response.json()));
-  const productDetails = productData.map((response) => response.result);
+  const productDetails: Product[] = productData.map((response) => response.result);
 
   return productDetails;
 }
