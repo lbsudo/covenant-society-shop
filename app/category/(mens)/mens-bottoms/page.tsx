@@ -3,6 +3,7 @@ import categoryFilter from "@/utils/categoryFilter";
 import getProducts from "@/actions/getProducts";
 import ProductGrid from "@/components/product/ProductGrid";
 import { Suspense } from 'react'
+import { Product } from "@/types/Product";
 
 function PageFallback() {
   return <></>
@@ -19,7 +20,7 @@ export default async function Page() {
     98,
   ]
   const ProductData = await getProducts();
-  const Products = await categoryFilter(ProductData, categories)
+  const Products: Product[] = await categoryFilter(ProductData, categories)
 
   return (
     <>

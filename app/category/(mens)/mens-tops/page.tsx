@@ -1,6 +1,7 @@
 // import getCategory from "@/actions/getCategory";
 import getProducts from "@/actions/getProducts";
 import ProductGrid from "@/components/product/ProductGrid";
+import { Product } from "@/types/Product";
 import categoryFilter from "@/utils/categoryFilter";
 import { Suspense } from 'react'
 
@@ -14,7 +15,7 @@ export default async function Page() {
     108,
   ]
   const ProductData = await getProducts();
-  const Products = await categoryFilter(ProductData, categories)
+  const Products: Product[] = await categoryFilter(ProductData, categories)
 
   // const ProductData = AllProducts.filter((product: Product) => {
   //   return product.sync_variants.some((variant) => variant.main_category_id === 108);

@@ -1,5 +1,6 @@
 import getProducts from "@/actions/getProducts";
 import ProductGrid from "@/components/product/ProductGrid";
+import { Product } from "@/types/Product";
 import { Suspense } from 'react'
 
 function PageFallback() {
@@ -7,7 +8,7 @@ function PageFallback() {
 }
 
 export default async function Page() {
-  const ProductData = await getProducts();
+  const ProductData: Product[] = await getProducts();
 
   return (
     <>

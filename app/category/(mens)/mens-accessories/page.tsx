@@ -2,6 +2,7 @@ import getCategory from "@/actions/getCategory";
 import categoryFilter from "@/utils/categoryFilter";
 import getProducts from "@/actions/getProducts";
 import ProductGrid from "@/components/product/ProductGrid";
+import { Product } from "@/types/Product";
 import { Suspense } from 'react'
 
 function PageFallback() {
@@ -22,7 +23,7 @@ export default async function Page() {
   ]
 
   const ProductData = await getProducts();
-  const Products = await categoryFilter(ProductData, categories)
+  const Products: Product[] = await categoryFilter(ProductData, categories)
 
 
   return (
@@ -37,12 +38,12 @@ export default async function Page() {
   );
 }
 
-// export async function generateStaticParams() {
-//   const categories = [
-//     221,
-//   ]
+export async function generateStaticParams() {
+  const categories = [
+    221,
+  ]
 
-//   const ProductData = await getProducts();
-//   const Products = await categoryFilter(ProductData, categories)
-//   return Products;
-// }
+  const ProductData = await getProducts();
+  const Products = await categoryFilter(ProductData, categories)
+  return Products;
+}
