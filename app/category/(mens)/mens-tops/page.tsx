@@ -10,11 +10,6 @@ function PageFallback() {
 
 export default async function Page() {
 
-
-  // const categories = [
-  //   108,
-  // ]
-
   const categories = [
     108,
   ]
@@ -38,11 +33,11 @@ export default async function Page() {
 }
 
 
-// export async function generateStaticParams() {
-//   const categories = [
-//     108,
-//   ]
-//   const ProductData = await getProducts();
-//   const Products = await categoryFilter(ProductData, categories)
-//   return Products;
-// }
+export async function generateStaticParams() {
+  const categories = [
+    108,
+  ]
+  const ProductData = await getProducts();
+  const Products = await categoryFilter(ProductData, categories)
+  return Products;
+}
