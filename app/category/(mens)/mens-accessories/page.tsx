@@ -14,7 +14,7 @@ export default async function Page() {
     221,
   ]
 
-  const ProductData = await getProducts();
+  const ProductData: Product[] = await getProducts();
   const Products: Product[] = await categoryFilter(ProductData, categories)
 
 
@@ -30,12 +30,12 @@ export default async function Page() {
   );
 }
 
-export async function generateStaticParams() {
-  const categories = [
-    221,
-  ]
+// export async function generateStaticParams() {
+//   const categories = [
+//     221,
+//   ]
 
-  const ProductData = await getProducts();
-  const Products = await categoryFilter(ProductData, categories)
-  return Products;
-}
+//   const ProductData = await getProducts();
+//   const Products = await categoryFilter(ProductData, categories)
+//   return Products;
+// }

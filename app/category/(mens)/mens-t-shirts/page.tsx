@@ -14,7 +14,7 @@ export default async function Page() {
     6,
     26,
   ]
-  const ProductData = await getProducts();
+  const ProductData: Product[] = await getProducts();
   const Products: Product[] = await categoryFilter(ProductData, categories)
 
   return (
